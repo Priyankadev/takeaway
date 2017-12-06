@@ -120,13 +120,33 @@ def token_required(f):
     return decorated
 
 
+##############################################
+#                                            #
+#               WHO AM I ROUTE               #
+#                                            #
+##############################################
+@app.route('/user/whoami')
+def whoami():
+    ret = {}
+    try:
+        sumSessionCounter()
+        ret['User'] = (" hii i am %s !!" % session['name'])
+        email = session['email']
+        ret['Session'] = email
+        ret['User_Id'] = mdb.get_user_id_by_session(email)
+    except Exception as exp:
+        ret['error'] = 1
+        ret['user'] = 'user is not login'
+    return JSONEncoder().encode(ret)
+
+
 ############################################################################
 #                                                                          #
 #          CHECK CANDIDATE ALREADY REGISTERED OR NOT THEN REGISTER         #
 #                            PASSWORD  BCRYPT                               #
 #                                                                          #
 ############################################################################
-@app.route('/add_user', methods=['POST'])
+@app.route('/user/add_user', methods=['POST'])
 def add_user():
     try:
         name = request.form['name']
@@ -159,6 +179,91 @@ def add_user():
     except Exception as exp:
         print('add_user() :: Got exception: %s' % exp)
         print(traceback.format_exc())
+
+
+############################################################################
+#                                                                          #
+#                              CANDIDATE LOGIN                             #
+#        STORED INFORMATION[SESSION_ID, MAC_ADDRESS, IP OR BROWSER]        #
+#     SEESION TIME 30 MIN (SEESION LOGOUT AUTOMATICALLY AFTER 30 MINs      #
+#                                                                          #
+############################################################################
+@app.route('/user/login', methods=['POST'])
+def login():
+    ret = {'err': 0}
+    try:
+        sumSessionCounter()
+        email = request.form['email']
+        password = request.form['password']
+
+        if mdb.user_exists(email):
+            pw_hash = mdb.get_password(email)
+            print('password in server, get from db class', pw_hash)
+            passw = bcrypt.check_password_hash(pw_hash, password)
+
+            if passw == True:
+                name = mdb.get_name(email)
+                session['name'] = name
+                session['email'] = email
+
+                # Login Successful!
+                expiry = datetime.datetime.utcnow() + datetime.\
+                    timedelta(minutes=30)
+
+                token = jwt.encode({'user': email, 'exp': expiry},
+                                   app.config['secretkey'], algorithm='HS256')
+                # flask_login.login_user(user, remember=False)
+                ret['msg'] = 'Login successful'
+                ret['err'] = 0
+                ret['token'] = token.decode('UTF-8')
+            else:
+                return 'Some thing is wrong !'
+
+        else:
+            # Login Failed!
+            return 'Login Failed!'
+
+            ret['msg'] = 'Login Failed'
+            ret['err'] = 1
+
+        LOGIN_TYPE = 'User Login'
+        email = session['email']
+        user_email = email
+        mac = get_mac()
+        ip = request.remote_addr
+
+        agent = request.headers.get('User-Agent')
+        mdb.save_login_info(user_email, mac, ip, agent, LOGIN_TYPE)
+
+    except Exception as exp:
+        ret['msg'] = '%s' % exp
+        ret['err'] = 1
+        print(traceback.format_exc())
+    return jsonify(ret)
+    return ('Login Done!')
+
+
+############################################################################
+#                                                                          #
+#                       USER SESSION LOGOUT                                #
+#       STOREED USER INFORMATION WHEN USER LOGOUT ALL DEATAILS.            #
+#                                                                          #
+############################################################################
+@app.route('/user/logout')
+def clearsession():
+    try:
+        LOGIN_TYPE = 'User Logout'
+        sumSessionCounter()
+        email = session['email']
+        user_email = email
+        mac = get_mac()
+        ip = request.remote_addr
+        agent = request.headers.get('User-Agent')
+        mdb.save_login_info(user_email, mac, ip, agent, LOGIN_TYPE)
+        session.clear()
+        return 'Logout Done!'
+    except Exception as exp:
+        return 'clearsession() :: Got Exception: %s' % exp
 
 
 ##############################################################################

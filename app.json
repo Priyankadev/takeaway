@@ -1,12 +1,12 @@
 {
-  "name": "speaking_test Heroku Login App",
-  "description": "speaking_test Heroku Login App",
+  "name": "takeaway Heroku Login App",
+  "description": "takeaway Heroku Login App",
   "keywords": [
-    "speaking_test",
+    "takeaway",
     "python",
     "sample"
   ],
-  "repository": "https://github.com/Priyankadev/speaking_test.git",
+  "repository": "https://github.com/Priyankadev/takeaway.git",
   "addons": [
     "heroku-mongodb"
   ]
