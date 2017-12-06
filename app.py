@@ -146,7 +146,7 @@ def whoami():
 #                            PASSWORD  BCRYPT                               #
 #                                                                          #
 ############################################################################
-@app.route('/user/add_user', methods=['POST'])
+@app.route('/user/register', methods=['POST'])
 def add_user():
     try:
         name = request.form['name']
