@@ -26,9 +26,9 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 mdb = Mdb()
 
-mail=Mail(app)
+mail = Mail(app)
 
-app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'ss0973385@gmail.com'
 app.config['MAIL_PASSWORD'] = 'abckbc123#'
@@ -146,11 +146,13 @@ def add_user():
             return 'Email address already used'
 
         else:
-            mdb.add_user(name, email, pw_hash, age, phone, address,
-                              gender)
-            msg = Message('Welcome To Speaking Test', sender = email, recipients = [email])
-            msg.body = "Your account has been created – now it will be easier " \
-                       "than ever to share and connect with your friends and family."
+            mdb.add_user(name, email, pw_hash, age, phone, address, gender)
+            msg = Message('Welcome To Speaking Test', sender=email,
+                          recipients=[email])
+
+            msg.body = "Your account has been created – now it will be " \
+                       "easier than ever to share and connect with your " \
+                       "friends and family."
             mail.send(msg)
             return 'User Is Added Successfully'
 
