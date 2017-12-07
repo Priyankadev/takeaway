@@ -127,15 +127,16 @@ def token_required(f):
 ##############################################
 @app.route('/user/whoami')
 def whoami():
-    ret = {}
+    ret = {'err': 0}
     try:
         sumSessionCounter()
         ret['User'] = (" hii i am %s !!" % session['name'])
         email = session['email']
         ret['Session'] = email
+        ret['err'] = 0
         ret['User_Id'] = mdb.get_user_id_by_session(email)
     except Exception as exp:
-        ret['error'] = 1
+        ret['err'] = 1
         ret['user'] = 'user is not login'
     return JSONEncoder().encode(ret)
 
@@ -143,7 +144,7 @@ def whoami():
 ############################################################################
 #                                                                          #
 #          CHECK CANDIDATE ALREADY REGISTERED OR NOT THEN REGISTER         #
-#                            PASSWORD  BCRYPT                               #
+#                            PASSWORD  BCRYPT                              #
 #                                                                          #
 ############################################################################
 @app.route('/user/register', methods=['POST'])
@@ -245,6 +246,33 @@ def login():
 
 ############################################################################
 #                                                                          #
+#                                    ADD POST                              #
+#                                                                          #
+############################################################################
+@app.route('/user/ad_post', methods=['POST'])
+def ad_post():
+    try:
+        sumSessionCounter()
+        email = session['email']
+        name = session['name']
+        title = request.form['title']
+        category = request.form['category']
+        description = request.form['description']
+        phone = request.form['phone']
+        city = request.form['city']
+
+        check = mdb.check_category(category)
+        if check:
+
+            mdb.ad_post(email, title, category, description, name, phone, city)
+            return 'Post Is Added Successfully'
+        else:
+            return 'Wrong Category!'
+    except Exception as exp:
+        print('ad_post() :: Got exception: %s' % exp)
+        print(traceback.format_exc())
+############################################################################
+#                                                                          #
 #                       USER SESSION LOGOUT                                #
 #       STOREED USER INFORMATION WHEN USER LOGOUT ALL DEATAILS.            #
 #                                                                          #
@@ -268,11 +296,76 @@ def clearsession():
 
 ##############################################################################
 #                                                                            #
+#                                   ADMIN LOGIN                              #
 #                                                                            #
+##############################################################################
+@app.route('/admin/login', methods=['POST'])
+def admin_login():
+    ret = {'err': 0}
+    try:
+        sumSessionCounter()
+        email = request.form['email']
+        password = request.form['password']
+
+        if mdb.admin_exists(email, password):
+            # name = mdb.get_admin_name(email)
+            session['email'] = email
+
+            expiry = datetime.datetime.utcnow() + datetime.\
+                timedelta(minutes=30)
+            token = jwt.encode({'user': email, 'exp': expiry},
+                               app.config['secretkey'], algorithm='HS256')
+            ret['msg'] = 'Login successful'
+            ret['err'] = 0
+            ret['token'] = token.decode('UTF-8')
+            return 'Login Done!'
+        else:
+            # Login Failed!
+            return 'Login Failed!'
+            ret['msg'] = 'Login Failed'
+            ret['err'] = 1
+
+    except Exception as exp:
+        ret['msg'] = '%s' % exp
+        ret['err'] = 1
+        print(traceback.format_exc())
+
+
+##############################################
+#                                            #
+#                 ADMIN LOGOUT               #
+#                                            #
+##############################################
+@app.route('/admin/logout')
+def clearsession1():
+    session.clear()
+    return 'Admin Logout!'
+
+
+############################################################################
+#                                                                          #
+#                               CREATE CATEGORY                            #
+#                                                                          #
+############################################################################
+@app.route('/admin/category', methods=['POST'])
+def category():
+    try:
+        category1 = request.form['category1']
+        category2 = request.form['category2']
+        category3 = request.form['category3']
+        category4 = request.form['category4']
+
+        mdb.save_category(category1, category2, category3, category4)
+
+    except Exception as exp:
+        print('category() :: Got exception: %s' % exp)
+        print(traceback.format_exc())
+    return 'Add category!'
+
+
+##############################################################################
 #                                                                            #
 #                               MAIN SERVER                                  #
-#                                                                            #
-#                                                                            #
 #                                                                            #
 ##############################################################################
 if __name__ == '__main__':

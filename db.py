@@ -80,10 +80,14 @@ class Mdb:
         result = self.db.user.find({'email': email})
         name = ''
         email = ''
+        phone = ''
+        address = ''
         if result:
             for data in result:
                 name = data['name']
                 email = data['email']
+                phone = data['phone']
+                address = data['address']
         return name
 
 
@@ -94,6 +98,47 @@ class Mdb:
 #############################################
     def get_user_id_by_session(self, email):
         result = self.db.user.find({'email': email})
+        id = ''
+        if result:
+            for data in result:
+                id = data['_id']
+        return id
+
+############################################################################
+#                                                                          #
+#                       REGISTRATION USRE IN DATABASE                      #
+#                                                                          #
+############################################################################
+    def ad_post(self, email, title, category, description, name, phone, city):
+        try:
+            rec = {
+                'email': email,
+                'title': title,
+                'category': category,
+                'description': description,
+                'name': name,
+                'phone': phone,
+                'city': city
+            }
+            self.db.post.insert(rec)
+
+        except Exception as exp:
+            print("ad_post() :: Got exception: %s", exp)
+            print(traceback.format_exc())
+
+
+    def check_category(self, category):
+        return self.db.category.find({'category': category}).count() > 0
+
+
+
+#############################################
+#                                           #
+#         GET ADMIN ID BY SESSION           #
+#                                           #
+#############################################
+    def get_admin_id_by_session(self, email):
+        result = self.db.admin.find({'email': email})
         id = ''
         if result:
             for data in result:
@@ -124,7 +169,48 @@ class Mdb:
             print("save_login_info() :: Got exception: %s", exp)
             print(traceback.format_exc())
 
+############################################################################
+#                                                                          #
+#                      ADD ADMIN IN DATABASE BY HARD CODE                  #
+#                                                                          #
+############################################################################
+    def add_admin(self, email, password):
+        try:
+            rec = {
+                'email': email,
+                'password': password
+            }
+            self.db.admin.insert(rec)
+        except Exception as exp:
+            print("add_admin() :: Got exception: %s", exp)
+            print(traceback.format_exc())
 
+############################################################################
+#                                                                          #
+#       CHECK EMAIL EXIST OR NOT IN DATABASE BEFORE LOGIN CANDIDATE        #
+#                                                                          #
+############################################################################
+    def admin_exists(self, email, password):
+
+        return self.db.admin.find({'email': email, 'password': password}).\
+                   count() > 0
+
+    def save_category(self, category1, category2, category3, category4):
+        try:
+            rec = {
+
+                'category' : [
+                    {'category1': category1},
+                    {'category2': category2},
+                    {'category3': category3},
+                    {'category4': category4},
+                    ]
+            }
+
+            self.db.category.insert(rec)
+        except Exception as exp:
+            print("add_admin() :: Got exception: %s", exp)
+            print(traceback.format_exc())
 ############################################################################
 #                                                                          #
 #                              MAIN                                        #
@@ -132,4 +218,4 @@ class Mdb:
 ############################################################################
 if __name__ == "__main__":
     mdb = Mdb()
-    # mdb.add_admin('john@gmail.com', '123')
+    mdb.add_admin('john@gmail.com', '123')
