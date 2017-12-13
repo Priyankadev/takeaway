@@ -243,13 +243,14 @@ def ad_post():
         phone = request.form['phone']
         city = request.form['city']
 
-        check = mdb.check_category(category)
-        if check:
+        # check = mdb.check_category(category)
+        # if check:
 
-            mdb.ad_post(email, title, category, description, name, phone, city)
-            return 'Post Is Added Successfully'
-        else:
-            return 'Wrong Category!'
+        mdb.ad_post(email, title, category, description, name, phone, city)
+        return 'Post Is Added Successfully'
+        # else:
+        #     return 'Wrong Category!'
+
     except Exception as exp:
         print('ad_post() :: Got exception: %s' % exp)
         print(traceback.format_exc())

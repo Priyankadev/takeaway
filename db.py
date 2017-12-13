@@ -136,7 +136,6 @@ class Mdb:
         return self.db.category.find({'category1': category}).count() > 0
 
 
-
 #############################################
 #                                           #
 #         GET ADMIN ID BY SESSION           #
