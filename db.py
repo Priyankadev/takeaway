@@ -5,9 +5,14 @@ import json
 import datetime
 from bson import ObjectId
 
+class JSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, ObjectId):
+            return str(o)
+        return json.JSONEncoder.default(self, 0)
+
 
 class Mdb:
-
     def __init__(self):
         conn_str = 'mongodb://tuser:tpass@ds133136.mlab.com:33136/' \
                    'takeaway'
@@ -128,7 +133,7 @@ class Mdb:
 
 
     def check_category(self, category):
-        return self.db.category.find({'category': category}).count() > 0
+        return self.db.category.find({'category1': category}).count() > 0
 
 
 
@@ -198,19 +203,33 @@ class Mdb:
     def save_category(self, category1, category2, category3, category4):
         try:
             rec = {
-
-                'category' : [
-                    {'category1': category1},
-                    {'category2': category2},
-                    {'category3': category3},
-                    {'category4': category4},
-                    ]
-            }
+                'category1': category1,
+                'category2': category2,
+                'category3': category3,
+                'category4': category4,
+                }
 
             self.db.category.insert(rec)
         except Exception as exp:
             print("add_admin() :: Got exception: %s", exp)
             print(traceback.format_exc())
+
+############################################################################
+#                                                                          #
+#                                   GET ALL USERS                          #
+#                                                                          #
+############################################################################
+    def get_users(self):
+        collection = self.db["user"]
+        # result = collection.find().skip(self.db.survey.count()-1)
+        result = collection.find({})
+        ret = []
+        for data in result:
+            print ("<<=====got the data====>> :: %s" % data)
+            ret.append(data)
+        return JSONEncoder().encode({'user': ret})
+
+
 ############################################################################
 #                                                                          #
 #                              MAIN                                        #

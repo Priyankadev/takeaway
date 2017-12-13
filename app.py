@@ -168,15 +168,8 @@ def add_user():
 
         else:
             mdb.add_user(name, email, pw_hash, age, phone, address, gender)
-            msg = Message('Welcome To Speaking Test', sender=email,
-                          recipients=[email])
 
-            msg.body = "Your account has been created – now it will be " \
-                       "easier than ever to share and connect with your " \
-                       "friends and family."
-            mail.send(msg)
             return 'User Is Added Successfully'
-
     except Exception as exp:
         print('add_user() :: Got exception: %s' % exp)
         print(traceback.format_exc())
@@ -271,6 +264,8 @@ def ad_post():
     except Exception as exp:
         print('ad_post() :: Got exception: %s' % exp)
         print(traceback.format_exc())
+
+
 ############################################################################
 #                                                                          #
 #                       USER SESSION LOGOUT                                #
@@ -329,6 +324,7 @@ def admin_login():
         ret['msg'] = '%s' % exp
         ret['err'] = 1
         print(traceback.format_exc())
+    return json.dumps(ret)
 
 
 ##############################################
@@ -340,6 +336,16 @@ def admin_login():
 def clearsession1():
     session.clear()
     return 'Admin Logout!'
+
+
+############################################################################
+#                                                                          #
+#                                 GET ALL USERS                            #
+#                                                                          #
+############################################################################
+@app.route("/admin/get_users", methods=['GET'])
+def get_users():
+    return mdb.get_users()
 
 
 ############################################################################
@@ -369,5 +375,6 @@ def category():
 #                                                                            #
 ##############################################################################
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True, threaded=True)
+    # port = int(os.environ.get('PORT', 5000))
+    # app.run(host='0.0.0.0', port=port, debug=True, threaded=True)
+    app.run(debug=True)
