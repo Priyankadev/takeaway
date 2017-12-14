@@ -369,7 +369,7 @@ def mobile():
     try:
         mdb.mobile()
     except Exception as exp:
-        print "get_done() :: Got exception: %s" % exp
+        print ("get_done() :: Got exception: %s" % exp)
         print(traceback.format_exc())
     return "%s" % mdb.mobile()
 
