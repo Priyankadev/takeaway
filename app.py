@@ -109,11 +109,11 @@ def token_required(f):
     return decorated
 
 
-##############################################
-#                                            #
-#               WHO AM I ROUTE               #
-#                                            #
-##############################################
+############################################################################
+#                                                                          #
+#                                WHO AM I ROUTE                            #
+#                                                                          #
+############################################################################
 @app.route('/user/whoami')
 def whoami():
     ret = {'err': 0}
@@ -130,6 +130,31 @@ def whoami():
     return JSONEncoder().encode(ret)
 
 
+@app.route('/')
+def home():
+    templeteData = {'title': 'Home'}
+    return render_template('user/index.html', **templeteData)
+
+
+@app.route('/user/myaccount')
+def myaccount():
+    templeteData = {'title': 'MyAccount'}
+    return render_template('user/myaccount.html', **templeteData)
+
+
+@app.route('/user/register')
+def register():
+    templeteData = {'title': 'Register'}
+    return render_template('user/register.html', **templeteData)
+
+
+
+@app.route('/user/posting')
+def posting():
+    templeteData = {'title': 'Posting'}
+    return render_template('user/posting.html', **templeteData)
+
+
 ############################################################################
 #                                                                          #
 #          CHECK CANDIDATE ALREADY REGISTERED OR NOT THEN REGISTER         #
@@ -142,10 +167,6 @@ def add_user():
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
-        age = request.form['age']
-        phone = request.form['phone']
-        address = request.form['address']
-        gender = request.form['gender']
 
         # password bcrypt  #
         pw_hash = bcrypt.generate_password_hash(password)
@@ -154,11 +175,12 @@ def add_user():
         check = mdb.check_email(email)
         if check:
             return 'Email address already used'
+            templateData = {'title': 'Signup Page'}
+            return render_template('user/register.html', **templateData)
 
         else:
-            mdb.add_user(name, email, pw_hash, age, phone, address, gender)
-
-            return 'User Is Added Successfully'
+            mdb.add_user(name, email, pw_hash)
+            return render_template('user/myaccount.html', session=session)
     except Exception as exp:
         print('add_user() :: Got exception: %s' % exp)
         print(traceback.format_exc())
@@ -177,8 +199,9 @@ def login():
     try:
         sumSessionCounter()
         email = request.form['email']
+        print("======",email)
         password = request.form['password']
-
+        print("======",password)
         if mdb.user_exists(email):
             pw_hash = mdb.get_password(email)
             print('password in server, get from db class', pw_hash)
@@ -200,11 +223,11 @@ def login():
                 ret['err'] = 0
                 ret['token'] = token.decode('UTF-8')
             else:
-                return 'Some thing is wrong !'
+                return render_template('user/index.html', session=session)
 
         else:
             # Login Failed!
-            return 'Login Failed!'
+            return render_template('user/index.html', session=session)
 
             ret['msg'] = 'Login Failed'
             ret['err'] = 1
@@ -222,8 +245,7 @@ def login():
         ret['msg'] = '%s' % exp
         ret['err'] = 1
         print(traceback.format_exc())
-    return jsonify(ret)
-    return ('Login Done!')
+    return render_template('user/index.html', session=session)
 
 
 ############################################################################
@@ -336,6 +358,20 @@ def clearsession1():
 @app.route("/admin/get_users", methods=['GET'])
 def get_users():
     return mdb.get_users()
+
+############################################################################
+#                                                                          #
+#                                 GET ALL USERS                            #
+#                                                                          #
+############################################################################
+@app.route("/mobile", methods=['GET'])
+def mobile():
+    try:
+        mdb.mobile()
+    except Exception as exp:
+        print "get_done() :: Got exception: %s" % exp
+        print(traceback.format_exc())
+    return "%s" % mdb.mobile()
 
 
 ############################################################################

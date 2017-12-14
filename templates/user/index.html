@@ -1,0 +1,372 @@
+{% extends "user/base.html" %}
+{% block title %}Work Page{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+<p>
+
+	<section id="body-container">
+
+	<div class="wrapper rel bigwrapper">
+
+	<form class="searchmain" id="searchmain" method="POST" action="https://www.olx.in/all-results/">
+	<fieldset>
+		<div class="fblock fleft fcity clr rel">
+	<div class="locationrequest  " id="locationBox">
+	<div class="clr rel">
+		<div class="rel fleft input-container">
+			<input id="cityField" autocomplete="off" type="text" defaultval="All India" defaultalternative="Choose city" value="" class="with-x-clear-button fleft defaultval light ca2 cityfield ">
+			<div class="cityfield" id="cityFieldGray">
+				<span class="fbold vishid"></span><span class="color-9"> </span>
+			</div>
+			<a href="#" class="icon cleartext3 abs clear-input-button hidden">X</a>
+			<div class="distanceseparator abs"></div>
+			<label class="icon locmarker2 abs" for="cityField">&nbsp;</label>
+			<div class="proposals hidden" id="proposalContainer">
+				<div class="lastbox">
+					<p>Recently selected:</p>
+					<ul id="last-locations-ul">
+					</ul>
+				</div>
+				<div class="abs categorySelectContainer">
+					<ul class="categorySelectList regionsList">
+					</ul>
+				</div>
+			</div>
+			<input class="autosuggest-geo-input" type="hidden" name="search[city_id]" value="" />
+			<input class="autosuggest-geo-input-region" type="hidden" name="search[region_id]" value="" />
+			<input class="autosuggest-geo-district-input" type="hidden" name="search[district_id]" value="0" />
+
+			<div class="autosuggest-geo-div suggestmain">
+				<!-- via ajax -->
+			</div>
+			<div id="geo-suggestions" class="chooselocation br3 hidden">
+				<div class="icon target abs"></div>
+				<a id="geo-suggestions-close" href="#" class="close icon abs">X</a>
+				<p>Select Location:</p>
+				<div id="geo-suggestions-options" class="items"></div>
+			</div>
+		</div>
+			</div>
+		<div class="suggest bottom abs zi2 br3 error hidden" id="cityFieldError">
+		<span class="target abs icon">&nbsp;</span>
+		<p>Select a city or zip code</p>
+	</div>
+	</div></div>
+<div class="fblock fquery fleft clr rel">
+	<div class="rel clr lheight16">
+		<div class="clearbox rel fleft input-container">
+			<input autocomplete="off" type="text" defaultval="30,73,490 Ads near You"
+				class="fleft ca2 light large queryfield defaultval with-x-clear-button autosuggest-input {suggesturl:'https://www.olx.in/ajax/suggest/get/'}" id="headerSearch" value="" name="q">
+			<a class="icon cleartext8 abs clear-input-button hidden" href="#">X</a>
+		</div>
+		<label class="icon searchflat abs" for="headerSearch">&nbsp;</label>
+
+		<div id="autosuggest-div"></div>
+	</div>
+</div>
+
+		<span class="button big4 fright br3">
+			<span class="icon inlblk vtop b_searchmain2 marginleft14 margintop9">&nbsp;</span>
+			<input id="submit-searchmain" type="submit" value="Search" class="cfff x-large margintop-1">
+		</span>
+	</fieldset>
+</form>
+<div align="center" class="masthead">
+    <div id="div-gpt-ad-1465357993476-3" style="display:block;margin: auto; padding:10px 0;">
+    <script type="text/javascript">
+        googletag.cmd.push(function() {
+            googletag.display('div-gpt-ad-1465357993476-3');
+            googletag.olxi2 && googletag.olxi2.ads && googletag.pubads().refresh([googletag.olxi2.ads.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.ad && googletag.pubads().refresh([googletag.olxi2.ad.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.ad_contact && googletag.pubads().refresh([googletag.olxi2.ad_contact.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.myaccount && googletag.pubads().refresh([googletag.olxi2.myaccount.adSlot0]);
+			googletag.olxi2 && googletag.olxi2.index && googletag.pubads().refresh([googletag.olxi2.index.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.category && googletag.pubads().refresh([googletag.olxi2.category.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.ads_native && googletag.pubads().refresh([googletag.olxi2.ads_native.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.listing && googletag.pubads().refresh([googletag.olxi2.listing.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.sticky && googletag.pubads().refresh([googletag.olxi2.sticky.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.topadBanner && googletag.pubads().refresh([googletag.olxi2.topadBanner.adSlot0]);
+
+        });
+    </script>
+</div></div>
+<div class="chooselocation chooselocationPop hidden">
+    <p class="title">Specify the location</p>
+    <ul></ul>
+    <a href="#" class="close block">Close</a>
+    <div class="target abs"></div>
+</div>
+
+	<div class="halfgrid main clr pdingbott20 zero-margin-top">
+		<div class="half fleft rel">
+			<table cellpadding="0" cellspacing="0" width="100%" class="icongrid small" id="maincat-grid">
+				<tr>
+					<td class="tcenter" width="25%">
+						<div class="lheight16 rel homeIconHeight">
+							<a href="#" class="cat-main tdnone" id="cat-3" title="Free Properties Classifieds Ads, Indian Properties Classifieds & Rental Classifieds on OLX" data-code="real-estate">
+								<span class="caticon margin0_a margintop20 overh rel block"></span>
+							</a>
+						</div>
+
+						<div class="lheight16 homeCatTitleWrapper">
+							<a href="#" class="tdnone" title="Free Properties Classifieds Ads, Indian Properties Classifieds & Rental Classifieds on OLX" data-code="real-estate">
+								<span class="link block"> Properties</span>
+							</a>
+							<span class="small homeCatAbundance">3,21,682 Ads</span>
+						</div>
+					</td>
+
+					<td class="tcenter" width="25%">
+						<div class="lheight16 rel homeIconHeight">
+							<a href="#" class="cat-main tdnone" id="cat-5" title="Buy and Sell - Online Cars Classifieds for Cars, Bikes, Auto, Other Used Cars" data-code="vehicles">
+								<span class="caticon margin0_a margintop20 overh rel block"></span>
+							</a>
+						</div>
+
+						<div class="lheight16 homeCatTitleWrapper">
+							<a href="#" class="tdnone" title="Buy and Sell - Online Cars Classifieds for Cars, Bikes, Auto, Other Used Cars" data-code="vehicles">
+								<span class="link block"> Cars</span>
+							</a>
+							<span class="small homeCatAbundance">3,72,809 Ads</span>
+						</div>
+					</td>
+
+					<td class="tcenter" width="25%">
+						<div class="lheight16 rel homeIconHeight">
+							<a href="#" class="cat-main tdnone" id="cat-99" title="Used Electronics & Appliances for sale in India | OLX" data-code="electronics-appliances">
+								<span class="caticon margin0_a margintop20 overh rel block"></span>
+							</a>
+						</div>
+
+						<div class="lheight16 homeCatTitleWrapper">
+							<a href="#" class="tdnone" title="Used Electronics & Appliances for sale in India | OLX" data-code="electronics-appliances">
+								<span class="link block"> Electronics & Appliances</span>
+							</a>
+								<span class="small homeCatAbundance">5,24,165 Ads</span>
+						</div>
+					</td>
+
+					<td class="tcenter" width="25%">
+
+						<div class="lheight16 rel homeIconHeight">
+							<a href="#" class="cat-main tdnone" id="cat-628" title="Online Classified Advertising for Used car sale, Used Furniture Sale, House for Sale" data-code="furniture">
+								<span class="caticon margin0_a margintop20 overh rel block"></span>
+							</a>
+						</div>
+						<div class="lheight16 homeCatTitleWrapper">
+							<a href="#" class="tdnone" title="Online Classified Advertising for Used car sale, Used Furniture Sale, House for Sale" data-code="furniture">
+								<span class="link block"> Furniture</span>
+							</a>
+							<span class="small homeCatAbundance">3,04,357 Ads</span>
+						</div>
+					</td>
+					</tr>
+					<tr>
+						<td class="tcenter" width="25%">
+							<div class="lheight16 rel homeIconHeight">
+								<a href="#" class="cat-main tdnone" id="cat-4" title="Jobs India" data-code="jobs">
+								<span class="caticon margin0_a margintop20 overh rel block"></span>
+								</a>
+							</div>
+							<div class="lheight16 homeCatTitleWrapper">
+								<a href="#" class="tdnone" title="Jobs India" data-code="jobs">
+									<span class="link block"> Jobs</span>
+								</a>
+									<span class="small homeCatAbundance">1,57,206 Ads</span>
+							</div>
+						</td>
+
+						<td class="tcenter" width="25%">
+							<div class="lheight16 rel homeIconHeight">
+								<a href="#" class="cat-main tdnone" id="cat-1411" title="Used Mobiles for sale in India | OLX" data-code="mobiles">
+									<span class="caticon margin0_a margintop20 overh rel block"></span>
+								</a>
+							</div>
+							<div class="lheight16 homeCatTitleWrapper">
+								<a href="#" class="tdnone" title="Used Mobiles for sale in India | OLX" data-code="mobiles">
+									<span class="link block"> Mobiles</span>
+								</a>
+									<span class="small homeCatAbundance">7,14,600 Ads</span>
+							</div>
+						</td>
+						<td class="tcenter" width="25%">
+							<div class="lheight16 rel homeIconHeight">
+								<a href="#" class="cat-main tdnone" id="cat-2198" title="Buy and Sell - Online Bikes Classifieds for Cars, Bikes, Auto, Other Used Bikes" data-code="bikes">
+								<span class="caticon margin0_a margintop20 overh rel block"></span>
+								</a>
+							</div>
+
+							<div class="lheight16 homeCatTitleWrapper">
+								<a href="#" class="tdnone" title="Buy and Sell - Online Bikes Classifieds for Cars, Bikes, Auto, Other Used Bikes" data-code="bikes">
+								<span class="link block"> Bikes</span>
+								</a>
+								<span class="small homeCatAbundance">2,80,564 Ads</span>
+							</div>
+						</td>
+
+						<td class="tcenter" width="25%">
+							<div class="lheight16 rel homeIconHeight">
+								<a href="#" class="cat-main tdnone" id="cat-767" title="Books, Sports & Hobbies in India | OLX" data-code="books-sports-hobbies">
+								<span class="caticon margin0_a margintop20 overh rel block"></span>
+								</a>
+							</div>
+							<div class="lheight16 homeCatTitleWrapper">
+								<a href="#" class="tdnone" title="Books, Sports & Hobbies in India | OLX" data-code="books-sports-hobbies">
+									<span class="link block"> Books, Sports & Hobbies</span>
+								</a>
+								<span class="small homeCatAbundance">1,53,460 Ads</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="tcenter" width="25%">
+							<div class="lheight16 rel homeIconHeight">
+								<a href="#" class="cat-main tdnone" id="cat-87" title="Fashion for sale in India | OLX" data-code="fashion-beauty">
+									<span class="caticon margin0_a margintop20 overh rel block"></span>
+								</a>
+							</div>
+							<div class="lheight16 homeCatTitleWrapper">
+								<a href="#" class="tdnone" title="Fashion for sale in India | OLX" data-code="fashion-beauty">
+									<span class="link block"> Fashion</span>
+								</a>
+								<span class="small homeCatAbundance">1,50,271 Ads</span>
+							</div>
+						</td>
+						<td class="tcenter" width="25%">
+							<div class="lheight16 rel homeIconHeight">
+								<a href="#" class="cat-main tdnone" id="cat-103" title="Pets for sale in India | OLX" data-code="pets">
+								<span class="caticon margin0_a margintop20 overh rel block"></span>
+								</a>
+							</div>
+							<div class="lheight16 homeCatTitleWrapper">
+								<a href="#" class="tdnone" title="Pets for sale in India | OLX" data-code="pets">
+									<span class="link block"> Pets</span>
+								</a>
+									<span class="small homeCatAbundance">12,039 Ads</span>
+							</div>
+						</td>
+						<td class="tcenter" width="25%">
+							<div class="lheight16 rel homeIconHeight">
+								<a href="#" class="cat-main tdnone" id="cat-619" title="Local Classifieds - Business Listings - Advertising Business - Employment Classifieds" data-code="services">
+									<span class="caticon margin0_a margintop20 overh rel block"></span>
+								</a>
+							</div>
+							<div class="lheight16 homeCatTitleWrapper">
+								<a href="#" class="tdnone" title="Local Classifieds - Business Listings - Advertising Business - Employment Classifieds" data-code="services">
+									<span class="link block"> Services</span>
+								</a>
+									<span class="small homeCatAbundance">84,544 Ads</span>
+							</div>
+						</td>
+						<td class="tcenter" width="25%">
+							<div class="lheight16 rel homeIconHeight">
+							</div>
+							<div class="lheight16 homeCatTitleWrapper">
+								<a href="" class="tdnone" title="" data-code="">
+									<span class="link block"> </span>
+								</a>
+									<span class="small homeCatAbundance"> Ads</span>
+							</div>
+						</td>
+					</tr>
+			</table>
+
+</div>
+			<div class="half fleft rel">
+	<div class="singlecall rel ab-newmain-2">
+		<p class="title">Sell your item on OLX</p>
+		<p class="title-2 hidden">Add your advert</p>
+		<p class="tcenter">
+			<a id="post-new-ad" href="https://www.olx.in/posting/" class="button tdnone inlblk rel">
+				<span class="inlblk tunder text-1">
+					<span class="x-large">Submit an Ad</span>
+				</span>
+				<span class="inlblk tunder text-2 hidden">
+					<span class="x-large">List an item</span>
+				</span>
+			</a>
+		</p>
+		<ul class="claim-1 hidden">
+			<li><span class="icon point inlblk vtop hidden"></span>For free and <strong>without registration</strong></li>
+										<li><span class="icon point inlblk vtop hidden"></span>Add up to <strong>8 photos</strong> per Ad</li>
+						<li><span class="icon point inlblk vtop hidden"></span>Active for <strong>30 days</strong></li>
+		</ul>
+		<div class="singlecall-links hidden">
+			<span class="name">Your OLX Ads:</span>
+			<a href="https://www.olx.in/myaccount/" class="link"><span>Edit</span></a>,
+							<a href="https://www.olx.in/myaccount/" class="link"><span>Upgrade</span></a>,
+						<a href="https://www.olx.in/myaccount/" class="link"><span>Remove</span></a>
+		</div>
+	</div>
+	</div>
+</div>
+
+
+<div>
+    <div class="nobg rel ab-newmain-2">
+        <div id="div-gpt-ad-1465357993476-0" style="display:block; width:728px; height:90px; margin: auto; padding:10px 0;">
+    <script type="text/javascript">
+        googletag.cmd.push(function() {
+            googletag.display('div-gpt-ad-1465357993476-0');
+            googletag.olxi2 && googletag.olxi2.ads && googletag.pubads().refresh([googletag.olxi2.ads.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.ad && googletag.pubads().refresh([googletag.olxi2.ad.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.ad_contact && googletag.pubads().refresh([googletag.olxi2.ad_contact.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.myaccount && googletag.pubads().refresh([googletag.olxi2.myaccount.adSlot0]);
+			googletag.olxi2 && googletag.olxi2.index && googletag.pubads().refresh([googletag.olxi2.index.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.category && googletag.pubads().refresh([googletag.olxi2.category.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.ads_native && googletag.pubads().refresh([googletag.olxi2.ads_native.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.listing && googletag.pubads().refresh([googletag.olxi2.listing.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.sticky && googletag.pubads().refresh([googletag.olxi2.sticky.adSlot0]);
+            googletag.olxi2 && googletag.olxi2.topadBanner && googletag.pubads().refresh([googletag.olxi2.topadBanner.adSlot0]);
+
+        });
+    </script>
+</div>
+	</div>
+</div>
+	</div>
+</section>
+</div>
+
+<script type="text/javascript" src="https://s2.olx.in/static/olxin/packed/swcfe100fb6def952a2c56ed28bc6933c7.js"></script>
+	<script type="text/javascript" src="https://s1.olx.in/static/olxin/packed/sw25a35b6c2af3076c1ca3ffbe8a457f96.js"></script>
+	<script type="text/javascript">
+			$(function(){
+				if(typeof GoogleObj != 'undefined') {
+					setTimeout(function() {
+						var conversions = GoogleObj.getConversions();
+						for(k in conversions) {
+							var data = conversions[k];
+							window['google_conversion_id'] = data.id;
+							window['google_conversion_language'] = data.language;
+							window['google_conversion_format'] = data.format;
+							window['google_conversion_color'] = data.color;
+							window['google_conversion_label'] = data.label;
+							window['google_conversion_value'] = data.value;
+							oldWrite = document.write;
+							document.write = (function(params)
+							{
+								$(document.body).append(params);
+							});
+					$.getScript(document.location.protocol + "//www.googleadservices.com/pagead/conversion.js", function(){
+						document.write = oldWrite;
+					});
+						}
+					}, 10);
+				};
+
+				if(typeof GoogleObj != 'undefined') {
+					setTimeout(function() {
+						var adsDetails = GoogleObj.getAdsDetails();
+						if(typeof adsDetails[0] != 'undefined') {
+							GoogleObj.loadGoogleAds(adsDetails[0]);
+						}
+					}, 100);
+				}
+			});
+</script>
+</p>
+{% endblock %}

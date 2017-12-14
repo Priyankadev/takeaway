@@ -1,0 +1,111 @@
+{% extends "user/base.html" %}
+{% block title %}{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+<p>
+
+	<div id="searchbox">
+	<div class="wrapper">
+		<div class="clr pding10_0"></div>
+	</div>
+</div>
+
+<section id="body-container">
+	<div class="wrapper">
+		<div class="content clr rel">
+			<div class="stuffed">
+				<h2 class="large fbold c62 marginbott10">Register</h2>
+				<div class="halfgrid bre3 br4 access accessbox">
+					<form class="default access type2" action="/user/register"  method="post">
+						<fieldset>
+							<div class="clr">
+								<div class="fleft half">
+									<div class="inner">
+
+		<div class="fblock clr" id="emailDiv">
+			<div class="label fleft c000 fbold tright">
+				<label for="userEmail">Email</label>
+			</div>
+			<div class="area clr">
+				<div class="fleft rel focusbox smallshadow">
+					<input type="text" value="" class="light br3 hide-dropdown" id="userEmail" name="email">
+						   <span class="status icon vmiddle inlblk dnone"></span>
+					<p class="desc errorboxContainer">
+						<small>Enter your Email</small>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="fblock clr" id="pass1Div">
+			<div class="label fleft c000 fbold tright">
+				<label for="userPass">Password<em class="cc914">*</em></label>
+			</div>
+			<div class="area clr">
+				<div class="fleft rel focusbox smallshadow">
+					<input type="password" autocomplete="off" value="" class="light br3" id="userPass" name="password">
+					<span class="status icon vmiddle inlblk dnone"></span>
+					<p class="desc errorboxContainer">
+						<small> Enter your password</small>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="fblock clr" id="user-name">
+			<div class="label fleft c000 fbold tright">
+				<label for="userPass-repeat">Name<em class="cc914">*</em> </label>
+			</div>
+			<div class="area clr">
+				<div class="fleft rel focusbox smallshadow">
+					<input type="text" value="" class="light br3" id="userPass-repeat" name="name">
+					<span class="status icon vmiddle inlblk dnone"></span>
+					<p class="desc errorboxContainer">
+						<small id="se_userPass-repeatErr">Enter Name</small>
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+								<div class="fleft half">
+	<div class="inner bre3 brtop0 brbottom0 brright0">
+		<p>By registering, you get access to <strong>My Account</strong> where you can:</p>
+		<ul class="c62 points">
+			<li>
+				<span class="icon inlblk point vmiddle"><span></span></span>Manage your Ads (Edit, Delete, Upgrade)</li>
+			<li>
+				<span class="icon inlblk point vmiddle"><span></span></span>Check responses to your Ads</li>
+			<li>
+				<span class="icon inlblk point vmiddle"><span></span></span>Track payments</li>
+			<li>
+				<span class="icon inlblk point vmiddle"><span></span></span>Manage your settings</li>
+		</ul>
+					</div>
+</div>
+							</div>
+							<div class="inner">
+
+								<div class="fblock">
+									<div class="label fleft c000 fbold tright"></div>
+									<div class="area clr margintop15">
+										<p>
+											<span class="button big br3 large"><input type="submit" class="cfff" value="Register" id="se_userSignIn"></span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+  </p>
+{% endblock %}

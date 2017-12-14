@@ -35,16 +35,14 @@ class Mdb:
 #                       REGISTRATION USRE IN DATABASE                      #
 #                                                                          #
 ############################################################################
-    def add_user(self, name, email, pw_hash, age, phone, address, gender):
+    def add_user(self, name, email, pw_hash):
         try:
+            ts = datetime.datetime.today().strftime("%a %b %d %X  %Y ")
             rec = {
                 'name': name,
                 'email': email,
-                'password': pw_hash,
-                'age': age,
-                'phone': phone,
-                'address': address,
-                'gender': gender
+                'creation_date': ts,
+                'password': pw_hash
             }
             self.db.user.insert(rec)
 
@@ -85,14 +83,11 @@ class Mdb:
         result = self.db.user.find({'email': email})
         name = ''
         email = ''
-        phone = ''
-        address = ''
+
         if result:
             for data in result:
                 name = data['name']
                 email = data['email']
-                phone = data['phone']
-                address = data['address']
         return name
 
 
