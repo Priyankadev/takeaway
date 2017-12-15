@@ -74,6 +74,7 @@ class Mdb:
                 print('password in db class', password)
         return password
 
+
 ############################################################################
 #                                                                          #
 #                GET NAME AND EMAILID VIA EMAIL ADDRESS                    #

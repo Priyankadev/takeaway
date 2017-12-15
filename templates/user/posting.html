@@ -26,24 +26,8 @@
 						</div>
 						<div class="area clr">
 							<div class="fleft rel zi2 focusbox">
-								<input type="text" value="" name="data[title]" class="text x-normal light br4 xxx-long2 required {maxtext:70, mintext:6}" id="add-title"> <span
+								<input type="text" value="" name="title" class="text x-normal light br4 xxx-long2 required {maxtext:70, mintext:6}" id="add-title"> <span
 									class="status icon vmiddle inlblk dnone">&nbsp;</span>
-								<p class="desc ca6">
-									<small> <b id="add-title-counter" class="counter-placeholder {forId: 'add-title'}">
-										70										</b> characters left									</small>
-								</p>
-								<div style="display: none" class="suggest withrightbanner abs zi3 br3">
-									<span class="target abs icon">&nbsp;</span>
-									<span class="suggest">
-                                        <span class="suggestTitle">Want to get your ad noticed?</span>
-										<ul class="newPostingtooltips">
-											<li><span>Give your ad an attractive title.</span></li>
-											<li><span>Think of words that people would use to search for your Ad.</span></li>
-											<li><span>Check the spellings and do not use CAPITAL LETTERS or symbols.</span></li>
-										</ul>
-									</span>
-									<p style="display: none" class="error "></p>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -68,13 +52,8 @@
 																															<span class="status rel icon vtop inlblk dnone margintop3">&nbsp;</span>
 									</div>
 								</div>
-								<div style="display: none" class="suggest bottom abs zi2 br3">
-									<span class="target abs icon">&nbsp;</span>
-									<p class="suggest">Select the category which best fits your Ad</p>
-									<p style="display: none" class="error "></p>
-								</div>
 							</div>
-													</div>
+						</div>
 					</div>
 
 					<div class="brtope5">
@@ -114,23 +93,21 @@
                                                 </div>
                                                 <div class="area clr">
                                                         <div class="fleft rel zi2 focusbox">
-                                                                <select name="data[private_business]" class="required x-normal light br3 {renderformOptions: 'hideChooselabel'}" id="id_private_business"
-                                                                        >
-                                                                        <option value="" class="chooselabel">Choose</option>
-                                                                        <option id="priv_buss_opt_priv" value="private" >Individual</option>
-                                                                        <option id="priv_buss_opt_buss" value="business" >Business</option>
-                                                                </select> <span class="status icon vtop inlblk dnone margintop3">&nbsp;</span>
-                                                                                                                                        <div class="suggest abs zi2 br3" style="display: none;">
-                                                                        <span class="target abs icon">&nbsp;</span> <span class="abs icon desc mini">&nbsp;</span>
-                                                                        <ul style="display: none;" class="suggest">
-                                                                                <li>Business or Private you choose</li>
-                                                                        </ul>
-                                                                        <p style="display: none" class="error"></p>
-                                                                </div>
-                                                                                                                                     </div>
-                                                </div>
-                                        </div>
-                                                	            	</div>
+															<select name="data[private_business]" class="required x-normal light br3 {renderformOptions: 'hideChooselabel'}">
+																<option value="" class="chooselabel">Choose</option>
+																<option id="priv_buss_opt_priv" value="private" >Individual</option>
+																<option id="priv_buss_opt_buss" value="business" >Business</option>
+															</select> <span class="status icon vtop inlblk dnone margintop3">&nbsp;</span>
+															<div class="suggest abs zi2 br3" style="display: none;">
+																<span class="target abs icon">&nbsp;</span> <span class="abs icon desc mini">&nbsp;</span>
+																<ul style="display: none;" class="suggest">
+																	<li>Business or Private you choose</li>
+																</ul>
+																<p style="display: none" class="error"></p>
+															</div>
+														</div>
+                                                </div></div>
+</div>
 		            <div class="fblock clr" id="description">
 						<div class="fleft label tright">
 							<label class="validation fbold c000" for="add-description"><span>Ad Description</span><span class="cc914">*</span></label>
@@ -178,313 +155,89 @@
 							</div>
 						</div>
 					</div>
-					<div id="gallery" class="fblock clr">
-						<div class="fleft label rel tright">
-							<a name="photos"></a>
-							<label class="validation fbold c000">Upload Photos</label> <small class="desc block lheight14">Ads with photos <span>sell faster</span>  </small>
-							<span class="margintop5 icon photoslabel block abs"></span>
-						</div>
-						<div class="area clr">
-							<div class="fleft clr rel focusbox">
-								<input type="hidden" name="data[riak_key]" id="riakKey" value="" /> <input type="hidden" id="adID"
-									value="" />
-								<ul class="photos-show-mini clr">
-																																						<li id="add-file-1"
-										class="fleft empty rel first-child   {slot: 1}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-2"
-										class="fleft empty rel    {slot: 2}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-3"
-										class="fleft empty rel    {slot: 3}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-4"
-										class="fleft empty rel    {slot: 4}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-5"
-										class="fleft empty rel  hidden disabled {slot: 5}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-6"
-										class="fleft empty rel  hidden disabled {slot: 6}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-7"
-										class="fleft empty rel  hidden disabled {slot: 7}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-8"
-										class="fleft empty rel  hidden disabled {slot: 8}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-9"
-										class="fleft empty rel  hidden disabled {slot: 9}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-10"
-										class="fleft empty rel  hidden disabled {slot: 10}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-11"
-										class="fleft empty rel  hidden disabled {slot: 11}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																																							<li id="add-file-12"
-										class="fleft empty rel  hidden disabled {slot: 12}">
-										<div class="br5">
-											<a href="javascript:void(0);" class="block" title="Add photo">
-												<span class="icon margin0_a rel add2 block">Add photo</span>
-											</a>
-										</div>
-									</li>
-																											</ul>
-
-								<div class="hidden">
-									<ul id="hidden-templates">
-										<li class="fleft with-photo br2 rel hidden" id="with-photo-template">
-											<div>
-												<a class="rotate-photo-a icon mini vis rotate abs" title="Rotate" href="#" rel="">Rotate</a>
-												<a class="delete-photo-a icon mini vis remove3 abs" title="Delete" href="#" rel="">Delete</a>
-												<img class="" src="" id="" alt="">
-											</div>
-										</li>
-
-										<li id="progress-loader" class="fleft empty progress rel hidden">
-											<div class="br5">
-												<span class="icon margin0_a rel progress block">Uploading</span>
-											</div>
-										</li>
-									</ul>
-								</div>
-
-								<div class="suggest withrightbanner photos marginleft5 abs zi2 br3" id="photo-suggest" style="display: none" >
-									<span class="target abs icon">&nbsp;</span>
-                                    <span class="suggestTitle">Ads with 1-4 photos get 5x more responses!</span>
-									<ul class="suggest newPostingtooltips">
-										<li id="stock-photo-suggest" class="hidden">
-											<span>Use original photos. Avoid copying from internet.</span>
-											<div id="stock-photo-image"></div>
-										</li>
-
-												<li id="first-photo-suggest"><span>Ensure the item is properly visible from multiple angles</span></li>
-												<li><span>Accepted formats are .jpg, .gif & .png. Size < 5MB.</span></li>
-												<li><span>Ensure that the image(s) does not contain any human face.</span></li>
-
-										<!--li id="first-photo-suggest">
-											<ul class="">											</ul>
-										</li-->
-										<li id="second-photo-suggest" class="hidden">
-											<ul class="newPostingtooltips">
-												<li><span>Drag and drop the picture to change its order.</span></li>
-											</ul>
-										</li>
-									</ul>
-									<p style="display: none" class="error"></p>
-								</div>
-							</div>
-							<div class="fleft full rel clr marginbott15">
-								<p id="show-gallery-li">
-									If you have problems with flash please use<a id="show-gallery-html" href="#">simpler form</a>
-								</p>
-															</div>
-						</div>
-					</div>
-					<div id="gallery-html" class="fblock clr hidden">
-						<div class="fleft label tright">
-							<label class="validation fbold c000">Upload Photos</label>
-							<small class="desc block lheight12 marginbott5 margintop5">You can upload up to 4 photos</small>
-							<small class="block lheight12">Maximum photo size is 5 MB</small>
-						</div>
-						<div class="area clr">
-							<div class="fblock" id="safariWarning" style="display: none;">
-							It seems that you are using a browser "Mobile Safari" that does not support sending files. Adding pictures is not possible. We're sorry.						</div>
-							<div id="simple_form_inputs" class="overh">
-																						<div id="htmlbutton_1" class="clr marginbott2 htmlbutton ">
-																		<input type="file" name="image[1]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="1">Delete</a>
-								</div>
-																						<div id="htmlbutton_2" class="clr marginbott2 htmlbutton ">
-																		<input type="file" name="image[2]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="2">Delete</a>
-								</div>
-																						<div id="htmlbutton_3" class="clr marginbott2 htmlbutton ">
-																		<input type="file" name="image[3]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="3">Delete</a>
-								</div>
-																						<div id="htmlbutton_4" class="clr marginbott2 htmlbutton ">
-																		<input type="file" name="image[4]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="4">Delete</a>
-								</div>
-																						<div id="htmlbutton_5" class="clr marginbott2 htmlbutton hidden disabled">
-																		<input type="file" name="image[5]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="5">Delete</a>
-								</div>
-																						<div id="htmlbutton_6" class="clr marginbott2 htmlbutton hidden disabled">
-																		<input type="file" name="image[6]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="6">Delete</a>
-								</div>
-																						<div id="htmlbutton_7" class="clr marginbott2 htmlbutton hidden disabled">
-																		<input type="file" name="image[7]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="7">Delete</a>
-								</div>
-																						<div id="htmlbutton_8" class="clr marginbott2 htmlbutton hidden disabled">
-																		<input type="file" name="image[8]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="8">Delete</a>
-								</div>
-																						<div id="htmlbutton_9" class="clr marginbott2 htmlbutton hidden disabled">
-																		<input type="file" name="image[9]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="9">Delete</a>
-								</div>
-																						<div id="htmlbutton_10" class="clr marginbott2 htmlbutton hidden disabled">
-																		<input type="file" name="image[10]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="10">Delete</a>
-								</div>
-																						<div id="htmlbutton_11" class="clr marginbott2 htmlbutton hidden disabled">
-																		<input type="file" name="image[11]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="11">Delete</a>
-								</div>
-																						<div id="htmlbutton_12" class="clr marginbott2 htmlbutton hidden disabled">
-																		<input type="file" name="image[12]" class="file fleft input-image " >
-									<a href="javascript:void(0);" class="removeAttachment block rel icon mini vmiddle marginleft5 remove3" rel="12">Delete</a>
-								</div>
-													</div>
-													<input type="hidden" name="data[gallery_html]" value="0" />
-						</div>
-					</div>
 				</fieldset>
 
-								<div class="headlinecontact rel">
-					<h2 class="c000 x-large pding10 rel fbold">Your contact details</h2>
-									</div>
-
-
-	            <fieldset class="hlight-box hlight brtope5">
-					<div class="hlight-target">
-												<div class="fblock clr cloud " id="person">
-	<div class="fleft label tright">
-		<label for="add-person" class="validation fbold c000">Name<span class="cc914">*</span></label>
-	</div>
-	<div class="area clr">
-		<div class="fleft rel focusbox">
-			<input type="text" value="" name="data[person]" class="text x-normal light br4 required"
-			id="add-person" >
-			<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
-			<div style="display: none" class="suggest abs zi2 br3">
-				<span class="target abs icon">&nbsp;</span>
-				<ul class="suggest newPostingtooltips">
-                    <li><span>Use your real name to build trust.</span></li>
-					<li><span>Do not use symbols and numbers in your name.</span></li>
-				</ul>
-				<p style="display: none" class="error"></p>
-			</div>
-		</div>
-	</div>
-</div>
-						<div class="fblock clr cloud  hidden" id="email">
-	<div class="fleft label tright">
-		<label for="add-email" class="validation fbold c000">
-			Email<span class="cc914">*</span>
-		</label>
-	</div>
-	<div class="area clr">
-		<div class="fleft rel focusbox">
-			<input disabled="disabled" type="text"
-			value="gaurav3.weavebytes@gmail.com" name="data[email]"
-			class="text light br4 text-mail required x-normal email x-long" id="add-email">
-			<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
-                        <div class="tip-logdin eml">To change email go to My Account -> Settings</div>
-            						<div style="display: none" class="suggest abs zi2 br3">
-				<span class="target abs icon">&nbsp;</span>
-				<ul class="suggest newPostingtooltips">
-											<li><span>Replies to your ad will be sent to this email.</span></li>
-						<li><span>It will be kept confidential.</span></li>
-									</ul>
-				<p style="display: none" class="error"></p>
-			</div>
-		</div>
-	</div>
+<div class="headlinecontact rel">
+	<h2 class="c000 x-large pding10 rel fbold">Your contact details</h2>
 </div>
 
-						<div class="fblock clr cloud " id="phone">
-	<div class="fleft label tright">
-		<label class="validation fbold c000" for="add-phone"> <span class="icon mini vmiddle inlblk mobile">&nbsp;</span>Phone number<span class="cc914">*</span></label>
-	</div>
-	<div class="area clr">
-		<div class="fleft rel focusbox">
-            <span class="cntrycod dsbld">+91</span>
-			<input disabled="disabled" type="text" autocomplete="off"
-            value="" name="data[phone]" class="phnum text x-normal light br4 {mintext:10, maxtext:10}" maxlength="10"  id="add-phone">
-			<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
-                            <div class="tip-logdin ph">To change your phone number go to My Account -> Settings</div>
+<fieldset class="hlight-box hlight brtope5">
+	<div class="hlight-target">
+		<div class="fblock clr cloud " id="person">
+			<div class="fleft label tright">
+				<label for="add-person" class="validation fbold c000">Name<span class="cc914">*</span></label>
+			</div>
+
+			<div class="area clr">
+				<div class="fleft rel focusbox">
+					<input type="text" value="" name="data[person]" class="text x-normal light br4 required" id="add-person" >
+
+					<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
+					<div style="display: none" class="suggest abs zi2 br3">
+						<span class="target abs icon">&nbsp;</span>
+							<ul class="suggest newPostingtooltips">
+                    			<li><span>Use your real name to build trust.</span></li>
+								<li><span>Do not use symbols and numbers in your name.</span></li>
+							</ul>
+							<p style="display: none" class="error"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="fblock clr cloud  hidden" id="email">
+		<div class="fleft label tright">
+			<label for="add-email" class="validation fbold c000">
+				Email<span class="cc914">*</span>
+			</label>
+		</div>
+		<div class="area clr">
+			<div class="fleft rel focusbox">
+				<input disabled="disabled" type="text"
+				value="gaurav3.weavebytes@gmail.com" name="data[email]"
+				class="text light br4 text-mail required x-normal email x-long" id="add-email">
+				<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
+                	<div class="tip-logdin eml">To change email go to My Account -> Settings</div>
+            		<div style="display: none" class="suggest abs zi2 br3">
+						<span class="target abs icon">&nbsp;</span>
+						<ul class="suggest newPostingtooltips">
+							<li><span>Replies to your ad will be sent to this email.</span></li>
+							<li><span>It will be kept confidential.</span></li>
+						</ul>
+						<p style="display: none" class="error"></p>
+					</div>
+			</div>
+		</div>
+		</div>
+
+		<div class="fblock clr cloud " id="phone">
+			<div class="fleft label tright">
+				<label class="validation fbold c000" for="add-phone"> <span class="icon mini vmiddle inlblk mobile">&nbsp;</span>Phone number<span class="cc914">*</span></label>
+			</div>
+			<div class="area clr">
+				<div class="fleft rel focusbox">
+            		<span class="cntrycod dsbld">+91</span>
+					<input disabled="disabled" type="text" autocomplete="off" value="" name="data[phone]" class="phnum text x-normal light br4 {mintext:10, maxtext:10}" maxlength="10"  id="add-phone">
+					<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
+                    	<div class="tip-logdin ph">To change your phone number go to My Account -> Settings</div>
             			<div style="display: none;" class="suggest abs zi2 br3">
-				<span class="target abs icon">&nbsp;</span>
-                                            <ul class="suggest newPostingtooltips">
-                            <li><span>Enter your MOBILE number.</span></li>
-                            <li><span>Do not add +91 or 0 before the number.</span></li>
-                            <li class="pp"><span>A verification code will be sent to this MOBILE number.</span></li>
-                            <li class="pp"><span>Verification is mandatory to post the Ad.</span></li>
-                            <li class="pp"><span>Verification helps you sell faster and build trust with buyers!</span></li>
-                        </ul>
-                    				<p style="display: none" class="error "></p>
+						<span class="target abs icon">&nbsp;</span>
+                        	<ul class="suggest newPostingtooltips">
+                            	<li><span>Enter your MOBILE number.</span></li>
+                            	<li><span>Do not add +91 or 0 before the number.</span></li>
+                            	<li class="pp"><span>A verification code will be sent to this MOBILE number.</span></li>
+                            	<li class="pp"><span>Verification is mandatory to post the Ad.</span></li>
+                            	<li class="pp"><span>Verification helps you sell faster and build trust with buyers!</span></li>
+                        	</ul>
+                    		<p style="display: none" class="error "></p>
+						</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</fieldset>
 
-
-					</div>
-
-				</fieldset>
-
-									<fieldset class="hlight-box hlight" id="cityArea">
+<fieldset class="hlight-box hlight" id="cityArea">
 	<div class="fblock clr cloud " id="map_address">
 		<div class="fleft label tright">
 			<label class="validation fbold c000" for="mapAddress">Enter a city<span class="cc914">*</span></label>
@@ -505,11 +258,7 @@
 
 						<div style="display: none;" class="suggest abs zi2 br3">
 							<span class="target abs icon">&nbsp;</span>
-							<p class="suggest">
-                                <span class="suggestTip">Type your city name and select the matching city from the list.</span>
-							</p>
-							<p style="display: none" class="error "></p>
-						</div>
+													</div>
 					</div>
 				</div>
 			</div>
@@ -518,80 +267,6 @@
 </fieldset>
 
 
-
-<fieldset class="hlight-box hlight hidden" id="districtsArea">
-	<div class="fblock clr cloud " id="map_address">
-		<div class="fleft label tright pding0">
-			<label class="validation fbold c000" for="mapAddress"><div>Enter a locality (nearby)</div><div class="ca6 district_optional hidden">Optional</div></label>
-		</div>
-
-		<div class="area clr">
-			<div class="clr">
-				<div class="fleft focusbox">
-					<div class="rel">
-
-		        		<input class="map-district" id="map-district-hidden" type="hidden" name="data[district_id]" value="" />
-						<input name="data[district]"  autocomplete='off' type="text" value="" class="geo-suggest-input x-normal text light br4 {maxtext:255} geo-suggest-adding" data-default="zip code or district name" id="mapAddressDistrict">
-						<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
-						<div class="autosuggest-geo-div autosuggest-geo-adding">
-							<!-- via ajax -->
-						</div>
-
-						<div style="display: none;" class="suggest abs zi2 br3">
-							<span class="target abs icon">&nbsp;</span>
-							<p class="suggest">
-                                                            <span class="suggestTip">Type your locality name and select the matching or nearby locality from list.</span>
-							</p>
-							<p style="display: none" class="error "></p>
-						</div>
-					</div>
-				</div>
-			</div>
-				<div class="mapcontainer rel br-5 margintop20 marginbott20 marginright20" style="display: none;">
-					<div class="locationtype abs clr zi2">
-						<div class="fleft bgfff loc-option br3">
-							<span class="pding0_10 fleft"><input id="loc-opt-1" class="{renderformClass:'inlblk'}" type="radio" name="loc-option" value="loc-opt-1"></span>
-							<label for="loc-opt-1" class="opt1">accurate location</label>
-						</div>
-						<div class="fleft bgfff loc-option br3 marginleft7">
-							<span class="pding0_10 fleft"><input id="loc-opt-2" class="{renderformClass:'inlblk'}" type="radio" name="loc-option" value="loc-opt-2" checked="checked"></span>
-							<label for="loc-opt-2" class="opt2">approximate location</label>
-						</div>
-					</div>
-					<div id="googlemap" class="" style="height: 360px; width: 636px;"></div>
-				</div>
-		</div>
-	</div>
-</fieldset>
-
-                    								<fieldset>
-					<div class="hidden" id="accept">
-						<h3 class="c000 x-large pding10 rel margintop30 fbold">Agree for processing of data</h3>
-						<div class="fblock clr cloud brtope5">
-							<div class="fleft label tright"></div>
-							<div class="area clr margintop5">
-								<div class="fleft rel focusbox">
-									<input type="checkbox" id="agreement" value="1" class="fleft required margintop3 {renderformClass: 'fleft margintop3 marginright10'} do-not-validate"
-										name="data[accept]"
-										 /> <span
-										class="status icon vmiddle fright dnone">&nbsp;</span>
-									<div class="agreement-label marginleft20 marginright30">
-										<label class="thin" for="agreement"> <strong class="cc914">*</strong> I hereby agree for processing my personal details by <a href="https://www.olx.in/terms/" title="Terms of Use" target="_blank">Terms of Use</a> OLX.in in accordance with the law. I am declaring that I am a person of full legal age										</label>
-									</div>
-									<div style="display: none" class="suggest abs zi2 br3 bottom">
-										<span class="target abs icon">&nbsp;</span>
-										<p style="display: none" class="error"></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-	                						</fieldset>
-					<fieldset class="hlight-box hlight">
-													<div id="payment-wrapper" style="display: none">
-							</div>
-											</fieldset>
 
 				<fieldset class="brtope5 margintop5">
 					<div class="fblock clr rel">
@@ -602,124 +277,13 @@
 									value="Submit" id="save" />
 								</span>
 							</li>
-
-														<li class="hidden fright progress">Processing</li>
 						</ul>
 					</div>
 				</fieldset>
-				<input class="map-coords" rel="zoom" type="hidden" name="data[map_zoom]"
-					value="" /> <input class="map-coords" rel="lat" type="hidden"
-					name="data[user_lat]" value="" /> <input class="map-coords" rel="lon"
-					type="hidden" name="data[user_lon]" value="" />
-
-
-	        	<input type="hidden" name="data[adding_key]" value="adding_5a32797b074134.69643947" />
-                        <input type="hidden" name="data[community]" value="" />
-
-
 			</form>
 		</div>
 	</div>
 </section>
-
-<div id="uploadError" class="pding20 hidden tcenter">
-	<p class="invalid marginbott20">Error</p>
-	<a href="javascript:void(0);" class="button br3 big medium cfff ok">
-		<span class="margitop-1">Ok</span>
-	</a>
-</div>
-<div id="dialogMessage" class="hidden tcenter">
-	<div class="inner"></div>
-</div>
-<div id="photoMessage" class="hidden">
-
-</div>
-<div style="display: none;" id="formContactData">
-	<div class="tinyscroll rel type2">
-		<div class="scrollbar">
-			<div class="track">
-				<div class="thumb">
-					<div class="end"></div>
-				</div>
-			</div>
-			<span class="icon abs scrollbarup">&nbsp;</span> <span class="icon abs scrollbardown">&nbsp;</span>
-		</div>
-		<div class="viewport">
-			<div class="overview">
-				<form class="default settingssmall overh" method="post" id="formContactDataForm">
-										<div class="clr pding10_0 brbott-6">
-						<fieldset class="fleft part45">
-							<legend></legend>
-							<div class="fblock clr">
-								<div class="label marginbott5">
-									<label class="fbold c000">Choose city</label>
-								</div>
-								<div class="area clr">
-									<div class="focusbox smallshadow fleft rel">
-																						<input name="data[city]" autocomplete="off" type="text" class="geo-suggest-input geo-suggest-adding geo-suggest-contact-form cityfield light long medium" id="formContactDataFormCity" value="">
-																							<input name="default[city]" type="hidden" class="{id: ''}" value="">
-																																		<input name="default[district]" type="hidden" class="{id: ''}" value="">
-																						<input type="hidden" value="" name="default[city_id]" class="autosuggest-geo-input">
-											<input type="hidden" class="autosuggest-geo-district-input" name="default[district_id]" value="">
-										<div class="autosuggest-geo-div autosuggest-geo-adding">
-											<!-- via ajax -->
-										</div>
-										<p class="desc">
-											<small></small>
-										</p>
-										<div style="display: none;" class="suggest abs zi2 br3">
-											<span class="target abs icon">&nbsp;</span> <span class="abs icon desc mini">&nbsp;</span>
-											<p style="display: none" class="error "></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</fieldset>
-					</div>
-										<div class="clr">
-						<fieldset>
-							<div class="fblock">
-								<div class="label marginbott5">
-									<label class="fbold c000">Name</label>
-								</div>
-								<div class="area clr">
-									<div class="focusbox rel smallshadow fleft">
-										<input type="text" class="text medium long light br4" name="default[person]" type="text" value="">
-										<div style="display: none" class="suggest abs zi2 br3">
-											<span class="target abs icon">&nbsp;</span> <span class="abs icon desc mini">&nbsp;</span>
-											<p style="display: none" class="error"></p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="fblock">
-								<div class="label marginbott5">
-									<label class="fbold c000">Phone</label>
-								</div>
-								<div class="area clr">
-									<div class="focusbox rel smallshadow fleft">
-										<input type="text" class="text medium long light br4" name="default[phone]" type="text" value="">
-										<div style="display: none;" class="suggest abs zi2 br3">
-											<span class="target abs icon">&nbsp;</span> <span class="abs icon desc mini">&nbsp;</span>
-											<p style="display: none" class="error "></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</fieldset>
-					</div>
-					<div class="clr pding10 pdingbott0">
-						<div class="fleft">
-							<span class="button br3 large fleft marginright20"><input type="submit" class="cfff" value="Change" id="edit"></span>
-						</div>
-						<p class="margintop7 color-5">Edit contact in posting form popup hint</p>
-					</div>
-					<input type="hidden" name="default[autocomplete_disabled]" value="0" />
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
 
 </p>
 {% endblock %}

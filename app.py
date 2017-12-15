@@ -386,7 +386,6 @@ def category():
         category2 = request.form['category2']
         category3 = request.form['category3']
         category4 = request.form['category4']
-
         mdb.save_category(category1, category2, category3, category4)
 
     except Exception as exp:
