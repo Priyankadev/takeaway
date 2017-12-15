@@ -110,7 +110,7 @@ class Mdb:
 #                       REGISTRATION USRE IN DATABASE                      #
 #                                                                          #
 ############################################################################
-    def ad_post(self, email, title, category, description, name, phone, city):
+    def ad_post(self, title, category, description, email, name, city):
         try:
             rec = {
                 'email': email,
@@ -118,7 +118,6 @@ class Mdb:
                 'category': category,
                 'description': description,
                 'name': name,
-                'phone': phone,
                 'city': city
             }
             self.db.post.insert(rec)
@@ -131,7 +130,18 @@ class Mdb:
     def check_category(self, category):
         return self.db.category.find({'category1': category}).count() > 0
 
-
+    def search_ad(self, city, product):
+        result = self.db.post.find({
+            "$or":
+                [
+                    {'city': {'$regex': city, '$options': 'i'},
+                     'title': {'$regex': product, '$options': 'i'}}
+                 ]
+        })
+        ret = []
+        for data in result:
+            ret.append(data)
+        return ret
 #############################################
 #                                           #
 #         GET ADMIN ID BY SESSION           #

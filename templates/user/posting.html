@@ -6,27 +6,26 @@
 {% endblock %}
 {% block content %}
 <p>
+	{% if session['name'] %}
 <section id="body-container" class="rel container">
 	<div class="wrapper">
 		<div class="content clr rel">
-			<form enctype="multipart/form-data" id="newOffer"
-				class="tablica55 default adding flat-style-form publish {categoriesAjaxUrl: 'https://www.olx.in/ajax/posting/categories/'}"
-				method="post" action="">
+
+			<form id="frm" class="tablica55 default adding flat-style-form publish {categoriesAjaxUrl: 'https://www.olx.in/ajax/posting/categories/'}"
+				method="post" action="/user/ad_post">
 
 				<div class="clr">
-					<h1 class="c000 x-large pding10 rel fleft">
-													Submit a Free Classified Ad											</h1>
-									</div>
-
+					<h1 class="c000 x-large pding10 rel fleft">	Submit a Free Classified Ad	</h1>
+				</div>
 
 				<fieldset class="hlight brtope5">
 					<div id="title" class="fblock clr">
 						<div class="fleft label tright">
-							<label class="validation fbold c000" for="add-title">Ad Title<span class="cc914">*</span></label>
+							<label class="validation fbold c000">Ad Title<span class="cc914">*</span></label>
 						</div>
 						<div class="area clr">
 							<div class="fleft rel zi2 focusbox">
-								<input type="text" value="" name="title" class="text x-normal light br4 xxx-long2 required {maxtext:70, mintext:6}" id="add-title"> <span
+								<input type="text" value="" name="title" class="text x-normal light br4 xxx-long2 required {maxtext:70, mintext:6}"> <span
 									class="status icon vmiddle inlblk dnone">&nbsp;</span>
 							</div>
 						</div>
@@ -39,119 +38,38 @@
 						<div class="area clr">
 							<div class="fleft rel margintop15">
 								<div class="table">
-																		<div id="category-breadcrumb-container" class="vmiddle">
+									<div id="category-breadcrumb-container" class="vmiddle">
 										<span id="catgory-breadcrumb-text" class="color-3 fbold"></span>
-										<div style="display: none">
-											<input id="category-container" type="text" name="data[category_id]" value="" />
-										</div>
-																																	<select class="dropdown light fleft"></select>
-												<a id="choose-category-ilu" class="abs icon choosecat_ab_3 inlblk tdnone" href="javascript:void(0);" title="Select category">&nbsp;</a>
-										<a id="choose-category-button" href="javascript:void(0);" title="Select category" class="button cfff br3 fnormal hidden">
-											<span>Change</span>
-										</a>
-																															<span class="status rel icon vtop inlblk dnone margintop3">&nbsp;</span>
+
+										<select class="dropdown light fleft" name="category">
+											<option value="Properties">Properties</option>
+											<option value="Cars">Cars</option>
+											<option value="Electronics & Appliances">Electronics & Appliances</option>
+											<option value="Furniture">Furniture</option>
+											<option value="Jobs">Jobs</option>
+											<option value="Mobiles">Mobiles</option>
+											<option value="Bikes">Bikes</option>
+											<option value="Books, Sports & Hobbies">Books, Sports & Hobbies</option>
+											<option value="Fashion">Fashion</option>
+											<option value="Pets">Pets</option>
+											<option value="Services">Services</option>
+										</select>
+
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="brtope5">
-						<div id="offer-seek-div-radio" class=" fblock clr hidden">
-
-							<div class="fleft label tright">
-								<label for="id-offer-seek-radio" class="fbold c000"><span>Type of Ad</span><span class="cc914">*</span></label>
-							</div>
-							<div class="area clr">
-								<div class="fleft rel focusbox">
-									<p class="marginbott5 fleft lheight24">
-										<input type="radio" value="offer" name="data[offer_seek]"  class="do-not-validate dynamic-param x-normal light br3 {renderformOptions: 'hideChooselabel'}" id="id_offer_seek_offer">
-										<label class="thin marginleft5" for="id_offer_seek_offer">Offering job</label>
-										<input type="radio" value="seek" name="data[offer_seek]"  class="do-not-validate dynamic-param x-normal light br3 {renderformOptions: 'hideChooselabel'}" id="id_offer_seek_seek">
-										<label class="thin marginleft5" for="id_offer_seek_seek">Seeking job</label>
-									</p>
-									<span class="status icon vtop inlblk dnone margintop3"></span>
-									<div class="suggest abs zi2 hidden br3">
-										<span class="target abs icon">&nbsp;</span>
-										<ul style="display: none;" class="suggest">
-											<li>Select proper option. Are you seeking for something or offering stuff/service</li>
-										</ul>
-										<p style="display: none" class="error"></p>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- parametry START -->
-						<div id="parametersContainer">
-												</div>
-
-						<!-- parametry END -->
-                                                                                                                                                                <div id="private-business-div" class="fblock clr hidden">
-                                                <div class="fleft label tright pdingtop6">
-                                                        <label for="id_private_business" class="fbold c000">Private or Business<span class="cc914">*</span></label>
-                                                </div>
-                                                <div class="area clr">
-                                                        <div class="fleft rel zi2 focusbox">
-															<select name="data[private_business]" class="required x-normal light br3 {renderformOptions: 'hideChooselabel'}">
-																<option value="" class="chooselabel">Choose</option>
-																<option id="priv_buss_opt_priv" value="private" >Individual</option>
-																<option id="priv_buss_opt_buss" value="business" >Business</option>
-															</select> <span class="status icon vtop inlblk dnone margintop3">&nbsp;</span>
-															<div class="suggest abs zi2 br3" style="display: none;">
-																<span class="target abs icon">&nbsp;</span> <span class="abs icon desc mini">&nbsp;</span>
-																<ul style="display: none;" class="suggest">
-																	<li>Business or Private you choose</li>
-																</ul>
-																<p style="display: none" class="error"></p>
-															</div>
-														</div>
-                                                </div></div>
-</div>
 		            <div class="fblock clr" id="description">
 						<div class="fleft label tright">
-							<label class="validation fbold c000" for="add-description"><span>Ad Description</span><span class="cc914">*</span></label>
+							<label class="validation fbold c000"><span>Ad Description</span><span class="cc914">*</span></label>
 						</div>
 						<div class="area clr">
 							<div class="fleft rel focusbox">
-								<textarea name="data[description]" class="x-normal light required br4 {maxtext:4096, mintext:10}" id="add-description" style="height: 120px; width: 400px; resize: none; overflow-y: hidden;"
+								<textarea name="description" class="x-normal light required br4 " frm="ad" style="height: 120px; width: 400px; resize: none; overflow-y: hidden;"
 									cols="80" rows="1" placeholder="Include the brand, model, age and any included accessories." ></textarea>
 								<span class="status icon vtop inlblk dnone">&nbsp;</span>
-								<p class="desc ca6">
-									<small> <b class="counter-placeholder {forId: 'add-description'}">4096</b>
-										characters left									</small>
-								</p>
-								<div style="display: none;" class="suggest withrightbanner wide abs zi2 br3">
-                                    <span class="target abs icon">&nbsp;</span>
-									<span class="suggestTitle">Items with good description sell faster!</span>
-									<ul class="suggest newPostingtooltips">
-										<li><span>Include the brand, model, age and any included accessories.</span></li>
-										<li><span>Mention the condition, features and reason for selling.</span></li>
-										<li><span>If the item is still under warranty, mention it!</span></li>
-										<li><span>Remember, a good description needs at least 2-3 sentences.</span></li>
-									</ul>
-									<ul class="suggestDefault hidden">
-										<li><span>Include the brand, model, age and any included accessories.</span></li>
-										<li><span>Mention the condition, features and reason for selling.</span></li>
-										<li><span>If the item is still under warranty, mention it!</span></li>
-										<li><span>Remember, a good description needs at least 2-3 sentences.</span></li>
-									</ul>
-									<ul class="newPostingtooltips pets-tips hide">
-										<li><span>The trade of species protected under the (Indian) Wildlife Protection Act, 1972, other regulations and conventions is prohibited on the Website. Further, trade of dead animals, animals for the purposes of slaughter, fighting, racing, torture or any other form of cruelty towards animals is also not allowed.</span></li>
-										<li><span>Please note that OLX works closely with regulators and law enforcement agencies in their investigation of illegal trade of protected species.</span></li>
-										<li><span>Please go through our posting rules and ensure that your advertisement complies with them.</span></li>
-									</ul>
-									<p style="display: none" class="error"></p>
-								</div>
-								<div class ="jobSuggestEle" style="display: none">
-									<span class="target abs icon">&nbsp;</span>
-									<span class="suggestTitle">Jobs with good description consider faster!</span>
-									<ul class="suggest newPostingtooltips">
-										<li><span>Job description should be with experience,skills</span></li>
-										<li><span>Add job location and other relavent information</span></li>
-									</ul>
-									<p style="display: none" class="error"></p>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -163,127 +81,69 @@
 
 <fieldset class="hlight-box hlight brtope5">
 	<div class="hlight-target">
-		<div class="fblock clr cloud " id="person">
+		<div class="fblock clr cloud ">
 			<div class="fleft label tright">
-				<label for="add-person" class="validation fbold c000">Name<span class="cc914">*</span></label>
+				<label class="validation fbold c000">Name<span class="cc914">*</span></label>
 			</div>
 
 			<div class="area clr">
 				<div class="fleft rel focusbox">
-					<input type="text" value="" name="data[person]" class="text x-normal light br4 required" id="add-person" >
-
-					<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
-					<div style="display: none" class="suggest abs zi2 br3">
-						<span class="target abs icon">&nbsp;</span>
-							<ul class="suggest newPostingtooltips">
-                    			<li><span>Use your real name to build trust.</span></li>
-								<li><span>Do not use symbols and numbers in your name.</span></li>
-							</ul>
-							<p style="display: none" class="error"></p>
-					</div>
+					<input type="disable" value="{{session['name']}}" name="name" class="text light br4 text-mail required x-normal email x-long">
 				</div>
 			</div>
 		</div>
 
-		<div class="fblock clr cloud  hidden" id="email">
-		<div class="fleft label tright">
-			<label for="add-email" class="validation fbold c000">
-				Email<span class="cc914">*</span>
-			</label>
-		</div>
-		<div class="area clr">
-			<div class="fleft rel focusbox">
-				<input disabled="disabled" type="text"
-				value="gaurav3.weavebytes@gmail.com" name="data[email]"
-				class="text light br4 text-mail required x-normal email x-long" id="add-email">
-				<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
-                	<div class="tip-logdin eml">To change email go to My Account -> Settings</div>
-            		<div style="display: none" class="suggest abs zi2 br3">
-						<span class="target abs icon">&nbsp;</span>
-						<ul class="suggest newPostingtooltips">
-							<li><span>Replies to your ad will be sent to this email.</span></li>
-							<li><span>It will be kept confidential.</span></li>
-						</ul>
-						<p style="display: none" class="error"></p>
-					</div>
-			</div>
-		</div>
-		</div>
-
-		<div class="fblock clr cloud " id="phone">
+		<div class="fblock clr cloud ">
 			<div class="fleft label tright">
-				<label class="validation fbold c000" for="add-phone"> <span class="icon mini vmiddle inlblk mobile">&nbsp;</span>Phone number<span class="cc914">*</span></label>
+				<label class="validation fbold c000">Email<span class="cc914">*</span></label>
 			</div>
 			<div class="area clr">
 				<div class="fleft rel focusbox">
-            		<span class="cntrycod dsbld">+91</span>
-					<input disabled="disabled" type="text" autocomplete="off" value="" name="data[phone]" class="phnum text x-normal light br4 {mintext:10, maxtext:10}" maxlength="10"  id="add-phone">
-					<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
-                    	<div class="tip-logdin ph">To change your phone number go to My Account -> Settings</div>
-            			<div style="display: none;" class="suggest abs zi2 br3">
-						<span class="target abs icon">&nbsp;</span>
-                        	<ul class="suggest newPostingtooltips">
-                            	<li><span>Enter your MOBILE number.</span></li>
-                            	<li><span>Do not add +91 or 0 before the number.</span></li>
-                            	<li class="pp"><span>A verification code will be sent to this MOBILE number.</span></li>
-                            	<li class="pp"><span>Verification is mandatory to post the Ad.</span></li>
-                            	<li class="pp"><span>Verification helps you sell faster and build trust with buyers!</span></li>
-                        	</ul>
-                    		<p style="display: none" class="error "></p>
+					<input type="disable" value="{{session['email']}}" name="email"class="text light br4 text-mail required x-normal email x-long">
+				</div>
+			</div>
+		</div>
+
+		<div class="fblock clr cloud ">
+			<div class="fleft label tright">
+				<label class="validation fbold c000" >Enter a city<span class="cc914">*</span></label>
+			</div>
+			<div class="area clr">
+				<div class="clr">
+					<div class="fleft focusbox">
+						<div class="rel zi3">
+							<input  name="city"  type="text" value="" class="text light br4 text-mail required x-normal email x-long">
 						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </fieldset>
 
-<fieldset class="hlight-box hlight" id="cityArea">
-	<div class="fblock clr cloud " id="map_address">
-		<div class="fleft label tright">
-			<label class="validation fbold c000" for="mapAddress">Enter a city<span class="cc914">*</span></label>
-		</div>
 
-		<div class="area clr">
-			<div class="clr">
-				<div class="fleft focusbox">
-					<div class="rel zi3">
-		        				        		<input class="map-city" id="map-city-hidden" type="hidden" name="data[city_id]" value="" />
-						<input  name="data[city]"   autocomplete='off' type="text" value="" class="geo-suggest-input x-normal text light br4 {maxtext:255} geo-suggest-adding" data-default="Pincode or city name" id="mapAddress">
-						<input type="hidden" class="map-district" id="map-district-hidden" name="data[district_id]" value="">
-						<input type="hidden" class="map-radius" name="data[map_radius]" value="" />
-						<span class="status icon vmiddle inlblk dnone">&nbsp;</span>
-						<div class="autosuggest-geo-div autosuggest-geo-adding">
-							<!-- via ajax -->
-						</div>
 
-						<div style="display: none;" class="suggest abs zi2 br3">
-							<span class="target abs icon">&nbsp;</span>
-													</div>
-					</div>
-				</div>
-			</div>
-			                					</div>
+<fieldset class="brtope5 margintop5">
+	<div class="fblock clr rel">
+		<div class="submittarget abs icon"></div>
+		<ul class="navi clr">
+			<li class="fright submitspace">
+				<span class="button big4 br3 large"><input type="submit" class="cfff" value="Submit" /></span>
+			</li>
+		</ul>
 	</div>
 </fieldset>
 
-
-
-				<fieldset class="brtope5 margintop5">
-					<div class="fblock clr rel">
-						<div class="submittarget abs icon"></div>
-						<ul class="navi clr">
-							<li class="fright submitspace">
-								<span class="button big4 br3 large"> <input type="submit" class="cfff"
-									value="Submit" id="save" />
-								</span>
-							</li>
-						</ul>
-					</div>
-				</fieldset>
-			</form>
+</form>
 		</div>
 	</div>
 </section>
+{% else %}
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('login') }}">here</a></p>
 
+{% include 'user/session.html' %}
+
+{% endif %}
 </p>
 {% endblock %}

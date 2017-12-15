@@ -148,9 +148,12 @@ def register():
     return render_template('user/register.html', **templeteData)
 
 
-
 @app.route('/user/posting')
 def posting():
+    # sumSessionCounter()
+    # email = session['email']
+    # name = session['name']
+
     templeteData = {'title': 'Posting'}
     return render_template('user/posting.html', **templeteData)
 
@@ -199,9 +202,7 @@ def login():
     try:
         sumSessionCounter()
         email = request.form['email']
-        print("======",email)
         password = request.form['password']
-        print("======",password)
         if mdb.user_exists(email):
             pw_hash = mdb.get_password(email)
             print('password in server, get from db class', pw_hash)
@@ -256,25 +257,39 @@ def login():
 @app.route('/user/ad_post', methods=['POST'])
 def ad_post():
     try:
-        sumSessionCounter()
-        email = session['email']
-        name = session['name']
         title = request.form['title']
         category = request.form['category']
         description = request.form['description']
-        phone = request.form['phone']
+
+        email = session['email']
+        name = session['name']
         city = request.form['city']
 
-        # check = mdb.check_category(category)
-        # if check:
-
-        mdb.ad_post(email, title, category, description, name, phone, city)
-        return 'Post Is Added Successfully'
-        # else:
-        #     return 'Wrong Category!'
+        mdb.ad_post(title, category, description, email, name, city)
+        return render_template('user/index.html', session=session)
 
     except Exception as exp:
         print('ad_post() :: Got exception: %s' % exp)
+        print(traceback.format_exc())
+
+
+############################################################################
+#                                                                          #
+#                                    ADD POST                              #
+#                                                                          #
+############################################################################
+@app.route('/search', methods=['POST'])
+def search():
+    try:
+        city = request.form['city']
+        product = request.form['product']
+        result = mdb.search_ad(city, product)
+
+        templateData = {'title': 'Searching..', 'result': result}
+        return render_template('user/search.html', **templateData)
+
+    except Exception as exp:
+        print('search() :: Got exception: %s' % exp)
         print(traceback.format_exc())
 
 
@@ -359,6 +374,7 @@ def clearsession1():
 def get_users():
     return mdb.get_users()
 
+
 ############################################################################
 #                                                                          #
 #                                 GET ALL USERS                            #
@@ -372,26 +388,6 @@ def mobile():
         print ("get_done() :: Got exception: %s" % exp)
         print(traceback.format_exc())
     return "%s" % mdb.mobile()
-
-
-############################################################################
-#                                                                          #
-#                               CREATE CATEGORY                            #
-#                                                                          #
-############################################################################
-@app.route('/admin/category', methods=['POST'])
-def category():
-    try:
-        category1 = request.form['category1']
-        category2 = request.form['category2']
-        category3 = request.form['category3']
-        category4 = request.form['category4']
-        mdb.save_category(category1, category2, category3, category4)
-
-    except Exception as exp:
-        print('category() :: Got exception: %s' % exp)
-        print(traceback.format_exc())
-    return 'Add category!'
 
 
 ##############################################################################

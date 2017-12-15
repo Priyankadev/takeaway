@@ -159,7 +159,7 @@ function __(txt) {
 				<a id="postNewAdLink" class="postnewlink fbold tdnone" href="/user/posting">
 					<span>Submit a Free Ad</span>
 				</a>
-					<span class="slogan">India's Largest Marketplace</span>
+					<a href="/" class="slogan">Takeaway</a>
 
 <ul class="userbox fright marginleft10">
 	<li class="inlblk nowrap vtop noslash" id="my-account-link">
@@ -169,12 +169,9 @@ function __(txt) {
 				<span class="icon inlblk accountshape vtop fleft"></span>
                 {% if session['name'] %}
 
-                <a href="{{ url_for('clearsession') }}">Logout</a>
+                <a href="{{ url_for('clearsession') }}">{{session['name']}}</a>
                 {% else %}<span class="link inlblk acc-user-name fleft"><strong>My Account</strong></span>
                 {% endif %}
-
-
-
 	        </a>
         </div>
 	</li>
@@ -199,27 +196,27 @@ function __(txt) {
 					<div class="static box fleft">
 						<ul class="small lheight16">
         					<li class="block">
-            					<a href="#" class="link gray" title="Locations Map">
+            					<a href="#!" class="link gray" title="Locations Map">
                 					<span>Locations Map</span>
             					</a>
         					</li>
 							<li class="block">
-            					<a href="#" class="link gray" title="Popular searches">
+            					<a href="#!" class="link gray" title="Popular searches">
 									<span>Popular searches</span>
             					</a>
 							</li>
 							<li class="block">
-								<a href="#" class="link gray" title="Archive">
+								<a href="#!" class="link gray" title="Archive">
 									<span>Archive</span>
 								</a>
 							</li>
 							<li class="block">
-								<a href="#" class="link gray" title="Sitemap">
+								<a href="#!" class="link gray" title="Sitemap">
                 					<span>Sitemap</span>
             					</a>
         					</li>
 							<li class="block">
-								<a class="link gray" title="Featured Ads" href="#">
+								<a class="link gray" title="Featured Ads" href="#!">
 									<span>Featured Ads</span>
 								</a>
 							</li>
@@ -229,12 +226,12 @@ function __(txt) {
 <div class="static box fleft">
 	<ul class="small lheight16">
         <li class="block">
-            <a href="#" class="link gray" title="Terms of Use">
+            <a href="#!" class="link gray" title="Terms of Use">
                 <span>Terms of Use</span>
             </a>
         </li>
         <li class="block">
-            <a href="#" class="link gray" title="Help &AMP; Contact Us">
+            <a href="#!" class="link gray" title="Help &AMP; Contact Us">
                 <span>Help &AMP; Contact Us</span>
             </a>
         </li>
@@ -244,18 +241,18 @@ function __(txt) {
 <div class="static box fleft">
 
 	<li class="block">
-		<a href="#" class="#" id="footerPartners">
+		<a href="#!" class="#!" id="footerPartners">
 			<span class="inlblk">Who we are</span>
 			<span class="icon mini inlblk vtop margintop6 marginleft5 down4">&nbsp;</span>
 		</a>
 	</li>
 	<li class="block">
-		<a href="#" target="_blank" class="tdnone link gray">
+		<a href="#!" target="_blank" class="tdnone link gray">
 			<span class="inlblk">Join Takeaway</span>
 		</a>
 	</li>
 	<li class="block">
-		<a href="#" class="tdnone link gray">
+		<a href="#!" class="tdnone link gray">
         	<span class="inlblk">Happy Takeaway</span>
         </a>
 	</li>
@@ -265,16 +262,16 @@ function __(txt) {
 	<div class="tcenter">Connect with us</div>
 		<ul class="socialsbox fright" id="footertopShare">
     		<li class="fleft">
-    			<a target="_blank" href="#" class="facebook-page-link"> </a>
+    			<a target="_blank" href="#!" class="facebook-page-link"> </a>
     		</li>
     		<li class="fleft">
-    		    <a target="_blank" href="#" class="gplus-page-link"> </a>
+    		    <a target="_blank" href="#!" class="gplus-page-link"> </a>
     		</li>
     		<li class="fleft">
-    	 	    <a target="_blank" href="#" class="twitter-page-link"> </a>
+    	 	    <a target="_blank" href="#!" class="twitter-page-link"> </a>
     		</li>
 			<li class="fleft">
-				<a target="_blank" href="#" class="instagram-link"> </a>
+				<a target="_blank" href="#!" class="instagram-link"> </a>
 			</li>
     	</ul>
 	</div>
