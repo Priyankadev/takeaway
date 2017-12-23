@@ -191,11 +191,10 @@ class Mdb:
         collection.remove({"title": text})
         result = collection.find({})
         if not result:
-            print "invalid user"
-            return "invalid user"
+            print("invalid user")
+            return("invalid user")
 
         for data in result:
-            print "<<=====got the data====>> :: %s" % data
             ret.append(data)
         return ret
 
