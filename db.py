@@ -185,6 +185,20 @@ class Mdb:
             ret.append(data)
         return ret
 
+    def delete_ads_by_id(self, text):
+        ret = []
+        collection = self.db["post"]
+        collection.remove({"title": text})
+        result = collection.find({})
+        if not result:
+            print "invalid user"
+            return "invalid user"
+
+        for data in result:
+            print "<<=====got the data====>> :: %s" % data
+            ret.append(data)
+        return ret
+
     def get_post(self, _id):
         collection = self.db["post"]
         result = collection.find({'_id': ObjectId(_id)})

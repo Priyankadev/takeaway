@@ -327,6 +327,24 @@ def search_cat():
     except Exception as exp:
         print('search_cat() :: Got exception: %s' % exp)
         print(traceback.format_exc())
+        return render_template('user/search_product.html')
+
+
+@app.route('/user/delete_ads', methods=['GET'])
+def delete_ads():
+    try:
+        email = session['email']
+        text = request.args.get("id")
+        mdb.delete_ads_by_id(text)
+        result = mdb.my_ad(email)
+
+        templateData = {'title': 'Searching..', 'result': result}
+        return render_template('user/my_ads.html', **templateData)
+
+    except Exception as exp:
+        print('search_cat() :: Got exception: %s' % exp)
+        print(traceback.format_exc())
+        return render_template('user/my_ads.html', **templateData)
 
 
 ############################################################################
@@ -343,39 +361,12 @@ def save_msg():
         msg = request.form['msg']
 
         mdb.add_msg(title, user, id, msg)
-        return render_template('user/login.html')
+        return render_template('user/save_ad.html')
 
     except Exception as exp:
         print('save_msg() :: Got exception: %s' % exp)
         print(traceback.format_exc())
         return render_template('user/search_product.html')
-
-
-############################################################################
-#                                                                          #
-#                                SEND MSG                                  #
-#                                                                          #
-############################################################################
-# @app.route('/user/save_msg', methods=['POST'])
-# def save_msg():
-#     try:
-#         title = request.form['title']
-#         price = request.form['price']
-#         category = request.form['category']
-#         description = request.form['description']
-#
-#         email = session['email']
-#         name = session['name']
-#         city = request.form['city']
-#
-#         mdb.ad_post(title, price, category, description, email, name, city)
-#         return render_template('user/save_ad.html', session=session)
-#
-#     except Exception as exp:
-#         print('ad_post() :: Got exception: %s' % exp)
-#         print(traceback.format_exc())
-#
-#
 
 
 @app.route('/user/myaccount')
@@ -402,6 +393,7 @@ def search():
     except Exception as exp:
         print('search() :: Got exception: %s' % exp)
         print(traceback.format_exc())
+        return render_template('user/login.html')
 
 
 ############################################################################
@@ -473,7 +465,6 @@ def admin_login():
 def clearsession1():
     session.clear()
     return 'Admin Logout!'
-
 
 
 ##############################################################################

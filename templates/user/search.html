@@ -15,7 +15,7 @@
 
 	<section id="body-container">
 	<div class="wrapper rel bigwrapper">
-	<form class="searchmain" id="searchmain" method="POST" action="/search">
+	<form class="searchmain" id="searchmain" method="POST" action="/user/search">
 	<fieldset>
 
 
@@ -85,6 +85,7 @@
       <tr>
          <th>TITLE</th>
 		 <th>CATEGORY</th>
+		 <th>PRICE</th>
 		 <th>NAME</th>
 		 <th>CITY</th>
          <th>DESCRIPTION</th>
@@ -97,6 +98,7 @@
 
         <td  style="text-align: center;"><a href="/user/send_msg?id={{ r._id }}">{{ r.title }}</a></td>
 		<td>{{ r.category }}</td>
+		<td>{{ r.price }}</td>
 		<td>{{ r.name }}</td>
 		<td>{{ r.city }}</td>
 		<td>{{ r.description }}</td>

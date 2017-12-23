@@ -23,7 +23,6 @@
 		 <th>CITY</th>
          <th>DESCRIPTION</th>
          <th>DATE</th>
-         <th>Delete</th>
       </tr>
     </thead>
 	   {% for r in result %}
@@ -36,7 +35,6 @@
 		<td>{{ r.city }}</td>
 		<td>{{ r.description }}</td>
 		<td>{{ r.time }}</td>
-        <td  style="text-align: center;"><a href="/user/delete_ads?id={{ r.title }}">delete</a></td>
       </tr>
 
     </tbody>
