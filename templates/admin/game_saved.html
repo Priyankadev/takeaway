@@ -1,0 +1,24 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Game saved Page{% endblock %}
+{% block head %}
+  {{ super() }}
+<style>
+    br{line-height:15em;}
+</style>
+
+{% endblock %}
+{% block content %}
+
+             <div class="jumbotron text-center">
+                 <div id="signup" class="span3 well well-large offset4">
+
+<p class="important"><br>
+{% if session['name'] %}
+      --- GAME ADDED SUCCESSFULLY ---
+<br>
+          {% else %}
+
+  {% include 'admin/session.html' %}
+  {% endif %}
+</p></div></div>
+{% endblock %}

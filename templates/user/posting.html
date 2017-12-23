@@ -1,11 +1,19 @@
-{% extends "user/base.html" %}
-{% block title %}Work Page{% endblock %}
+{% extends "user/user_base.html" %}
+{% block title %}Signup Page{% endblock %}
 {% block head %}
   {{ super() }}
+<style>
+    br{line-height:7em;}
+</style>
 
 {% endblock %}
 {% block content %}
-<p>
+
+<!--div class="container"><div class="row"-->
+<!--<div class="col-sm-12">-->
+<div class="jumbotron text-center">
+<div id="signup" class="span3 well well-large offset4">
+<p class="important">
 	{% if session['name'] %}
 <section id="body-container" class="rel container">
 	<div class="wrapper">
@@ -30,6 +38,20 @@
 							</div>
 						</div>
 					</div>
+
+
+					<div id="price" class="fblock clr">
+						<div class="fleft label tright">
+							<label class="validation fbold c000">price<span class="cc914">*</span></label>
+						</div>
+						<div class="area clr">
+							<div class="fleft rel zi2 focusbox">
+								<input type="text" value="" name="price" class="text x-normal light br4 xxx-long2 required {maxtext:70, mintext:6}"> <span
+									class="status icon vmiddle inlblk dnone">&nbsp;</span>
+							</div>
+						</div>
+					</div>
+
 
 					<div id="categories" class="fblock clr pdingright0 catSelector3">
 						<div class="fleft label tright">
@@ -88,7 +110,7 @@
 
 			<div class="area clr">
 				<div class="fleft rel focusbox">
-					<input type="disable" value="{{session['name']}}" name="name" class="text light br4 text-mail required x-normal email x-long">
+					<input type="text" value="{{session['name']}}" name="name" class="text light br4 text-mail required x-normal email x-long" disabled>
 				</div>
 			</div>
 		</div>
@@ -99,7 +121,7 @@
 			</div>
 			<div class="area clr">
 				<div class="fleft rel focusbox">
-					<input type="disable" value="{{session['email']}}" name="email"class="text light br4 text-mail required x-normal email x-long">
+					<input type="text" value="{{session['email']}}" name="email"class="text light br4 text-mail required x-normal email x-long" disabled>
 				</div>
 			</div>
 		</div>
@@ -145,5 +167,6 @@
 {% include 'user/session.html' %}
 
 {% endif %}
-</p>
+
+</p></div></div>
 {% endblock %}

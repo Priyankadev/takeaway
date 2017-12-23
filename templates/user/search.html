@@ -1,20 +1,25 @@
-{% extends "user/base.html" %}
-{% block title %}Work Page{% endblock %}
+{% extends "user/user_base.html" %}
+{% block title %}Login Page{% endblock %}
 {% block head %}
   {{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
 
 {% endblock %}
 {% block content %}
-<p>
+
+<!--<div class="container"><div class="row">-->
+<div class="col-sm-12">
+<div class="jumbotron text-center">
+<div id="signup" class="span3 well well-large offset4">
+<p class="important">
+{% if session['name'] %}
 
 	<section id="body-container">
-
 	<div class="wrapper rel bigwrapper">
-
 	<form class="searchmain" id="searchmain" method="POST" action="/search">
 	<fieldset>
-		<div class="fblock fleft fcity clr rel">
+
+
+	<div class="fblock fleft fcity clr rel">
 	<div class="locationrequest  " id="locationBox">
 	<div class="clr rel">
 		<div class="rel fleft input-container">
@@ -39,7 +44,6 @@
 			<input class="autosuggest-geo-input" type="hidden" name="search[city_id]" value="" />
 			<input class="autosuggest-geo-input-region" type="hidden" name="search[region_id]" value="" />
 			<input class="autosuggest-geo-district-input" type="hidden" name="search[district_id]" value="0" />
-
 			<div class="autosuggest-geo-div suggestmain">
 				<!-- via ajax -->
 			</div>
@@ -50,7 +54,7 @@
 				<div id="geo-suggestions-options" class="items"></div>
 			</div>
 		</div>
-			</div>
+	</div>
 		<div class="suggest bottom abs zi2 br3 error hidden" id="cityFieldError">
 		<span class="target abs icon">&nbsp;</span>
 		<p>Select a city or zip code</p>
@@ -64,43 +68,47 @@
 			<a class="icon cleartext8 abs clear-input-button hidden" href="#!">X</a>
 		</div>
 		<label class="icon searchflat abs" for="headerSearch">&nbsp;</label>
-
 		<div id="autosuggest-div"></div>
 	</div>
 </div>
-
 		<span class="button big4 fright br3">
 			<span class="icon inlblk vtop b_searchmain2 marginleft14 margintop9">&nbsp;</span>
 			<input id="submit-searchmain" type="submit" value="Search" class="cfff x-large margintop-1">
 		</span>
 	</fieldset>
 </form>
-<center>
 
-        <table id="myTable">
-        <thead >
-        <tr>
-            <td>TITLE</td><td>CATEGORY</td>
-            <td>NAME</td><td>CITY</td>
-            <td>DESCRIPTION</td><td>EMAIL</td>
+<br>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+         <th>TITLE</th>
+		 <th>CATEGORY</th>
+		 <th>NAME</th>
+		 <th>CITY</th>
+         <th>DESCRIPTION</th>
+		 <th>EMAIL</th>
+      </tr>
+    </thead>
+	   {% for r in result %}
+    <tbody>
+      <tr class="warning">
 
+        <td  style="text-align: center;"><a href="/user/send_msg?id={{ r._id }}">{{ r.title }}</a></td>
+		<td>{{ r.category }}</td>
+		<td>{{ r.name }}</td>
+		<td>{{ r.city }}</td>
+		<td>{{ r.description }}</td>
+		<td>{{ r.email }}</td>
+      </tr>
 
-        </tr>
-        </thead>
+    </tbody>
+	  {% endfor %}
+  </table>
+</div>
+<BR><BR>
 
-        {% for r in result %}
-
-        <tbody>
-        <tr>
-            <td>{{ r.title }}</td><td>{{ r.category }}</td><td>{{ r.name }}</td>
-			<td>{{ r.city }}</td><td>{{ r.description }}</td><td>{{ r.email }}</td>
-        </tr>
-        </tbody>
-
-        {% endfor %}
-        </table>
-
-    </center><br><br>
 
 
     </div>
@@ -168,5 +176,12 @@
 				}
 			});
 </script>
-</p>
+
+  {% else %}
+<p style="color: red"> You still didn't set your Email, do it
+
+
+{% include 'user/session.html' %}
+{% endif %}
+</p></div></div>
 {% endblock %}

@@ -1,0 +1,81 @@
+{% extends "user/user_base.html" %}
+{% block title %}Signup Page{% endblock %}
+{% block head %}
+  {{ super() }}
+
+
+{% endblock %}
+{% block content %}
+
+<div class="jumbotron text-center">
+<div id="signup" class="span3 well well-large offset4">
+<p class="important">
+	{% if session['name'] %}
+
+    <center>
+
+        <h4> Response of {{ post.title }}</h4><hr>
+
+
+        <form method="post" action="/user/save_msg"><br>
+            <input type="hidden" value="{{session['name']}}" name="user">
+            <input type="hidden" value="{{ post._id }}" name="id">
+            <input type="hidden" value="{{ post.title }}" name="title">
+
+            <div class="container">
+            <table border="2">
+                <tr>
+                    <td><b>Comment:</b></td><td><input type="text" name="msg" value=""></td>
+                </tr>
+
+            </table><br>
+                <button type="submit" class="btn btn-success">SUBMIT</button>
+            </div>
+
+        </form><br><br><br><br><hr><br>
+
+   if related post msg are show then recomment of these comments
+
+        <p style="color:blue; ">RECORDS OF Msg</p><br>
+
+  <table class="table table-bordered">
+
+    <thead>
+      <tr>
+         <th style="text-align: center;">TITLE</th>
+         <th style="text-align: center;">POST ID</th>
+		 <th style="text-align: center;">USER</th>
+		 <th style="text-align: center;">MSG</th>
+		 <th style="text-align: center;">TIME</th>
+      </tr>
+    </thead>
+      <tbody>
+      {% for r in msg %}
+
+    <tr>
+
+		<td  style="text-align: center;">{{ r.title }}</a></td>
+        <td>{{ r.post_id }}</td>
+		<td>{{ r.user }}</td>
+		<td>{{ r.msg }}</td>
+		<td>{{ r.time }}</td>
+    </tr>
+    {% endfor %}
+      </tbody>
+
+  </table>
+
+
+
+
+
+{% else %}
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('login') }}">here</a></p>
+
+{% include 'user/session.html' %}
+
+{% endif %}
+
+</p></div></div>
+{% endblock %}

@@ -1,17 +1,23 @@
-{% extends "user/base.html" %}
-{% block title %}Work Page{% endblock %}
+{% extends "user/user_base.html" %}
+{% block title %}Login Page{% endblock %}
 {% block head %}
   {{ super() }}
 
 {% endblock %}
 {% block content %}
-<p>
 
-	<section id="body-container">
+<!--<div class="container"><div class="row">-->
+<div class="col-sm-12">
+<div class="jumbotron text-center">
+<div id="signup" class="span3 well well-large offset4">
+<p class="important">
+{% if session['name'] %}
+
+  	<section id="body-container">
 
 	<div class="wrapper rel bigwrapper">
 
-	<form class="searchmain" id="searchmain" method="POST" action="/search">
+	<form class="searchmain" id="searchmain" method="POST" action="/user/search">
 	<fieldset>
 		<div class="fblock fleft fcity clr rel">
 	<div class="locationrequest  " id="locationBox">
@@ -78,7 +84,10 @@
 	<div class="halfgrid main clr pdingbott20 zero-margin-top">
 		<div class="half fleft rel">
 			<table cellpadding="0" cellspacing="0" width="100%" class="icongrid small" id="maincat-grid">
-				<tr>
+
+
+
+              <tr>
 					<td class="tcenter" width="25%">
 						<div class="lheight16 rel homeIconHeight">
 							<a href="#!" class="cat-main tdnone" id="cat-3" title="Free Properties Classifieds Ads, Indian Properties Classifieds & Rental Classifieds on OLX" data-code="real-estate">
@@ -251,7 +260,7 @@
 		<p class="title">Sell your item on Takeaway</p>
 		<p class="title-2 hidden">Add your advert</p>
 		<p class="tcenter">
-			<a id="post-new-ad" href="#!" class="button tdnone inlblk rel">
+			<a id="post-new-ad" href="/user/posting" class="button tdnone inlblk rel">
 				<span class="inlblk tunder text-1">
 					<span class="x-large">Submit an Ad</span>
 				</span>
@@ -337,5 +346,12 @@
 				}
 			});
 </script>
-</p>
+
+  {% else %}
+<p style="color: red"> You still didn't set your Email, do it
+
+
+{% include 'user/session.html' %}
+{% endif %}
+</p></div></div>
 {% endblock %}

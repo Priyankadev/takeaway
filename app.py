@@ -131,31 +131,16 @@ def whoami():
 
 
 @app.route('/')
+@app.route('/user/login')
 def home():
     templeteData = {'title': 'Home'}
-    return render_template('user/index.html', **templeteData)
+    return render_template('user/login.html', **templeteData)
 
 
-@app.route('/user/myaccount')
-def myaccount():
-    templeteData = {'title': 'MyAccount'}
-    return render_template('user/myaccount.html', **templeteData)
-
-
-@app.route('/user/register')
-def register():
-    templeteData = {'title': 'Register'}
-    return render_template('user/register.html', **templeteData)
-
-
-@app.route('/user/posting')
-def posting():
-    # sumSessionCounter()
-    # email = session['email']
-    # name = session['name']
-
-    templeteData = {'title': 'Posting'}
-    return render_template('user/posting.html', **templeteData)
+@app.route('/user/signup')
+def signup():
+    templeteData = {'title': 'Signup page'}
+    return render_template('user/signup.html', **templeteData)
 
 
 ############################################################################
@@ -177,16 +162,16 @@ def add_user():
 
         check = mdb.check_email(email)
         if check:
-            return 'Email address already used'
             templateData = {'title': 'Signup Page'}
-            return render_template('user/register.html', **templateData)
+            return render_template('user/signup.html', **templateData)
 
         else:
             mdb.add_user(name, email, pw_hash)
-            return render_template('user/myaccount.html', session=session)
+            return render_template('user/login.html', session=session)
     except Exception as exp:
         print('add_user() :: Got exception: %s' % exp)
         print(traceback.format_exc())
+        return render_template('user/signup.html', **templateData)
 
 
 ############################################################################
@@ -224,11 +209,11 @@ def login():
                 ret['err'] = 0
                 ret['token'] = token.decode('UTF-8')
             else:
-                return render_template('user/index.html', session=session)
+                return render_template('user/login.html', session=session)
 
         else:
             # Login Failed!
-            return render_template('user/index.html', session=session)
+            return render_template('user/login.html', session=session)
 
             ret['msg'] = 'Login Failed'
             ret['err'] = 1
@@ -246,7 +231,7 @@ def login():
         ret['msg'] = '%s' % exp
         ret['err'] = 1
         print(traceback.format_exc())
-    return render_template('user/index.html', session=session)
+    return render_template('user/login.html', session=session)
 
 
 ############################################################################
@@ -254,31 +239,157 @@ def login():
 #                                    ADD POST                              #
 #                                                                          #
 ############################################################################
+@app.route('/user/posting')
+def posting():
+    templeteData = {'title': 'Posting'}
+    return render_template('user/posting.html', **templeteData)
+
+
 @app.route('/user/ad_post', methods=['POST'])
 def ad_post():
     try:
         title = request.form['title']
+        price = request.form['price']
         category = request.form['category']
         description = request.form['description']
-
         email = session['email']
         name = session['name']
         city = request.form['city']
 
-        mdb.ad_post(title, category, description, email, name, city)
-        return render_template('user/index.html', session=session)
+        mdb.ad_post(title, price, category, description, email, name, city)
+        return render_template('user/save_ad.html', session=session)
 
     except Exception as exp:
         print('ad_post() :: Got exception: %s' % exp)
+        print(traceback.format_exc())
+        return render_template('user/posting.html', session=session)
+
+
+############################################################################
+#                                                                          #
+#                                MY ADs                                    #
+#                                                                          #
+############################################################################
+@app.route('/user/my_ads', methods=['GET'])
+def my_ads():
+    try:
+        email = session['email']
+        result = mdb.my_ad(email)
+        templateData = {'title': 'result', 'result': result}
+        return render_template('user/my_ads.html', **templateData)
+
+    except Exception as exp:
+        print('search() :: Got exception: %s' % exp)
+        print(traceback.format_exc())
+        return render_template('user/my_ads.html')
+
+
+############################################################################
+#                                                                          #
+#                                SEND MSG                                  #
+#                                                                          #
+############################################################################
+@app.route("/user/send_msg", methods=['GET'])
+def create_msg():
+    id = request.args.get("id")
+    msg = mdb.get_msg_by_id(id)
+    post = mdb.get_post(id)
+
+    temp_data = {'title': 'post msg', 'post': post,  'msg': msg}
+    return render_template('user/create_msg.html', **temp_data)
+
+
+############################################################################
+#                                                                          #
+#                      Search Product By Category Route                    #
+#                                                                          #
+############################################################################
+@app.route('/user/search_product')
+def search_product():
+    templeteData = {'title': 'search product'}
+    return render_template('user/search_product.html', **templeteData)
+
+
+############################################################################
+#                                                                          #
+#                      Search Product By Category                          #
+#                                                                          #
+############################################################################
+@app.route('/user/search_cat', methods=['POST'])
+def search_cat():
+    try:
+        text = request.form['category']
+        result = mdb.search_cat(text)
+
+        templateData = {'title': 'Searching..', 'result': result}
+        return render_template('user/search_product.html', **templateData)
+
+    except Exception as exp:
+        print('search_cat() :: Got exception: %s' % exp)
         print(traceback.format_exc())
 
 
 ############################################################################
 #                                                                          #
-#                                    ADD POST                              #
+#                                SAVE MSG                                  #
 #                                                                          #
 ############################################################################
-@app.route('/search', methods=['POST'])
+@app.route("/user/save_msg", methods=['POST'])
+def save_msg():
+    try:
+        title = request.form['title']
+        user = request.form['user']
+        id = request.form['id']
+        msg = request.form['msg']
+
+        mdb.add_msg(title, user, id, msg)
+        return render_template('user/login.html')
+
+    except Exception as exp:
+        print('save_msg() :: Got exception: %s' % exp)
+        print(traceback.format_exc())
+        return render_template('user/search_product.html')
+
+
+############################################################################
+#                                                                          #
+#                                SEND MSG                                  #
+#                                                                          #
+############################################################################
+# @app.route('/user/save_msg', methods=['POST'])
+# def save_msg():
+#     try:
+#         title = request.form['title']
+#         price = request.form['price']
+#         category = request.form['category']
+#         description = request.form['description']
+#
+#         email = session['email']
+#         name = session['name']
+#         city = request.form['city']
+#
+#         mdb.ad_post(title, price, category, description, email, name, city)
+#         return render_template('user/save_ad.html', session=session)
+#
+#     except Exception as exp:
+#         print('ad_post() :: Got exception: %s' % exp)
+#         print(traceback.format_exc())
+#
+#
+
+
+@app.route('/user/myaccount')
+def myaccount():
+    templeteData = {'title': 'MyAccount'}
+    return render_template('user/myaccount.html', **templeteData)
+
+
+############################################################################
+#                                                                          #
+#                                 SEARCH POST                              #
+#                                                                          #
+############################################################################
+@app.route('/user/search', methods=['POST'])
 def search():
     try:
         city = request.form['city']
@@ -313,7 +424,7 @@ def clearsession():
         session.clear()
         return 'Logout Done!'
     except Exception as exp:
-        return 'clearsession() :: Got Exception: %s' % exp
+        return render_template('user/login.html')
 
 
 ##############################################################################
@@ -346,7 +457,6 @@ def admin_login():
             return 'Login Failed!'
             ret['msg'] = 'Login Failed'
             ret['err'] = 1
-
     except Exception as exp:
         ret['msg'] = '%s' % exp
         ret['err'] = 1

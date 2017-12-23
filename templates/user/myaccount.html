@@ -1,97 +1,22 @@
-{% extends "user/base.html" %}
-{% block title %}{% endblock %}
+{% extends "user/user_base.html" %}
+{% block title %}User Home Page{% endblock %}
 {% block head %}
   {{ super() }}
 
 {% endblock %}
 {% block content %}
-<p>
+<p class="important">
+        {% if session['name'] %}&nbsp;
+<div class="jumbotron text-center">
+<div id="signup" class="span3 well well-large offset4">
+<h1>my account</h1>
 
-	<div id="searchbox">
-	<div class="wrapper">
-		<div class="clr pding10_0"></div>
-	</div>
-</div></header>
+    {% else %}
 
-<section id="body-container">
-	<div class="wrapper">
-		<div class="content clr rel">
-			<div class="stuffed">
-				<div class="accessgrid ">
+  {% include 'user/session.html' %}
+  {% endif %}
+</p><br><br><br><br>
+</div></div>
 
-<h2 class="large fbold c62 marginbott10">Log in</h2>
-<div class="accessbox bre3 br4 rel">
-	<div class="inner">
-		<form class="default access login margintop15" action="/user/login" method="post" >
-			<fieldset class="rel">
-                <div class="fblock clr rel">
-					<div class="label fleft c000 fbold tright">
-						<label>Email</label>
-					</div>
-					<div class="area clr">
-						<div class="fleft rel focusbox">
-							<input type="text" value="" class="text x-normal light br4 required" name="email">
-							<span class="status icon vmiddle inlblk dnone"></span>
-						</div>
-					</div>
-				</div>
-				<div class="fblock clr rel ">
-					<div class="label fleft c000 fbold tright">
-						<label>Password</label>
-					</div>
-					<div class="area clr">
-						<div class="fleft rel focusbox">
-							<input type="password" value="" class="text x-normal light br4 required" name="password">
-							<span class="status icon vmiddle inlblk dnone"></span>
-						</div>
-					</div>
-				</div>
-				<div class="fblock clr">
-					<div class="label fleft c000 fbold marginright10"></div>
-					<div class="area margin10_0">
-							<input name="login[remember-me]" type="checkbox" id="user-remember" class="checkbox marginleft10" checked="checked">
-						   	<label class="marginleft10 lheight20" for="user-remember">Remember me</label>
-					</div>
-				</div>
-				<div class="fblock clr tcenter margintop7">
-					<div class="label fleft c000 fbold"></div>
-					<div class="area with-button">
-						<p class="bgf3 br5 box clr">
-							<span class="button big cfff br3 default x-large">
-								<input type="submit" class="cfff" value="Log in" >
-							</span>
-						</p>
-						<p class="fleft">
-							<small>
-								<a id="newpassword" class="link" href="/user/recover">
-									<span>Unable to Login?</span>
-								</a>
-							</small>
-						</p>
-						<p class="fright">
-							<small>
-								<a class="register-link link" id="register-desktop" href="/user/register">
-									<span>Register</span>
-								</a>
-							</small>
-						</p>
-					</div>
-				</div>
-			</fieldset>
-
-					</form>
-	</div>
-
-	</div>
-
-	<p class="tcenter marginbott50 color-4">
-		By logging in, you accept our <a href="#!" class="link" target="_blank"><span>Terms of Use</span></a>  	</p>
-
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-  </p>
 {% endblock %}
+

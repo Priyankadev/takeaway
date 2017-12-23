@@ -1,0 +1,53 @@
+{% extends "user/user_base.html" %}
+{% block title %}Signup Page{% endblock %}
+{% block head %}
+  {{ super() }}
+<style>
+    br{line-height:7em;}
+</style>
+
+{% endblock %}
+{% block content %}
+
+<!--div class="container"><div class="row"-->
+<!--<div class="col-sm-12">-->
+<div class="jumbotron text-center">
+<div id="signup" class="span3 well well-large offset4">
+<p class="important">
+
+
+        <center>
+        <h4>Sign up for your account</h4><br>
+        <form class="form" action="/user/register" method="post">
+            <table>
+
+            <tr>
+                <th>NAME :</th><th><input type="text" size="30" name="name" required=""></tr>
+            </tr>
+
+            <tr>
+                <th>EMAIL ID :</th><th><input type="email" size="30" name="email" required=""></tr>
+            </tr>
+            <tr>
+                <th>PASSWORD :</th><th><input type="password" size="30" name="password" required=""></tr>
+            </tr>
+            <tr>
+                <th><label class="checkbox" for="rememberme"></th>
+                <th><input type="checkbox" /> Remember me</label></th>
+            </tr>
+            <tr>
+                <th></th><th><input class="btn btn-success" type="submit" value="Signup" />
+                <input class="btn btn-reset" type="reset" value="Reset" /></th>
+            </tr>
+                <tr><th></th>
+                    <th>
+                         Already have an account? <a class="btn" href="/user/login">Login In</a>
+                    </th>
+                </tr>
+            </table>
+        </form>
+        </center>
+
+
+</p></div></div>
+{% endblock %}

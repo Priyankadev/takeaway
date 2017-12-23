@@ -1,0 +1,54 @@
+{% extends "user/user_base.html" %}
+{% block title %}Signup Page{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+
+<!--div class="container"><div class="row"-->
+<!--<div class="col-sm-12">-->
+<div class="jumbotron text-center">
+<div id="signup" class="span3 well well-large offset4">
+<p class="important">
+{% if session['name'] %}
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+         <th>TITLE</th>
+         <th>PRICE</th>
+		 <th>CATEGORY</th>
+		 <th>CITY</th>
+         <th>DESCRIPTION</th>
+         <th>DATE</th>
+      </tr>
+    </thead>
+	   {% for r in result %}
+    <tbody>
+      <tr class="warning">
+
+        <td>{{ r.title }}</td>
+        <td>{{ r.price }}</td>
+		<td>{{ r.category }}</td>
+		<td>{{ r.city }}</td>
+		<td>{{ r.description }}</td>
+		<td>{{ r.time }}</td>
+      </tr>
+
+    </tbody>
+	  {% endfor %}
+  </table>
+</div>
+<BR><BR>
+{% else %}
+<p style="color: red"> You still didn't set your Email, do it
+
+{% include 'user/session.html' %}
+
+{% endif %}
+
+
+</p></div></div>
+{% endblock %}

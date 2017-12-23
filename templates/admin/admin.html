@@ -1,0 +1,24 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Admin login Page{% endblock %}
+
+{% block head %}
+
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+ &nbsp;
+<div class="jumbotron text-center">
+<div id="signup" class="span3 well well-large offset4">
+
+<p class="important">
+    {% if session['name'] %}<br>
+        <p style="color:green">welcome {{session['name']}}</p><br>
+
+      {% else %}
+
+  {% include 'admin/session.html' %}
+  {% endif %}
+
+</p></div></div>
+{% endblock %}

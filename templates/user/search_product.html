@@ -1,0 +1,119 @@
+{% extends "user/user_base.html" %}
+{% block title %}Signup Page{% endblock %}
+{% block head %}
+  {{ super() }}
+<style>
+    br{line-height:7em;}
+</style>
+
+{% endblock %}
+{% block content %}
+
+<!--div class="container"><div class="row"-->
+<!--<div class="col-sm-12">-->
+<div class="jumbotron text-center">
+<div id="signup" class="span3 well well-large offset4">
+<p class="important">
+	{% if session['name'] %}
+<section id="body-container" class="rel container">
+	<div class="wrapper">
+		<div class="content clr rel">
+
+			<form id="frm" class="tablica55 default adding flat-style-form publish {categoriesAjaxUrl: 'https://www.olx.in/ajax/posting/categories/'}"
+				method="post" action="/user/search_cat">
+
+				<div class="clr">
+					<h1 class="c000 x-large pding10 rel fleft">	Search Product By Category	</h1>
+				</div>
+
+				<fieldset class="hlight brtope5">
+
+
+					<div id="categories" class="fblock clr pdingright0 catSelector3">
+						<div class="fleft label tright">
+							<label class="fbold c000">Category<span class="cc914">*</span></label>
+						</div>
+						<div class="area clr">
+							<div class="fleft rel margintop15">
+								<div class="table">
+									<div id="category-breadcrumb-container" class="vmiddle">
+										<span id="catgory-breadcrumb-text" class="color-3 fbold"></span>
+
+										<select class="dropdown light fleft" name="category">
+											<option value="Properties">Properties</option>
+											<option value="Cars">Cars</option>
+											<option value="Electronics & Appliances">Electronics & Appliances</option>
+											<option value="Furniture">Furniture</option>
+											<option value="Jobs">Jobs</option>
+											<option value="Mobiles">Mobiles</option>
+											<option value="Bikes">Bikes</option>
+											<option value="Books, Sports & Hobbies">Books, Sports & Hobbies</option>
+											<option value="Fashion">Fashion</option>
+											<option value="Pets">Pets</option>
+											<option value="Services">Services</option>
+										</select>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+		            </fieldset>
+
+<fieldset class="brtope5 margintop5">
+	<div class="fblock clr rel">
+		<div class="submittarget abs icon"></div>
+		<ul class="navi clr">
+			<li class="fright submitspace">
+				<span class="button big4 br3 large"><input type="submit" class="cfff" value="Submit" /></span>
+			</li>
+		</ul>
+	</div>
+</fieldset>
+</form>
+		</div>
+	</div>
+
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+
+         <th>TITLE</th>
+         <th>PRICE</th>
+		 <th>CATEGORY</th>
+		 <th>NAME</th>
+		 <th>CITY</th>
+         <th>DESCRIPTION</th>
+		 <th>EMAIL</th>
+      </tr>
+    </thead>
+	   {% for r in result %}
+    <tbody>
+      <tr class="warning">
+		<td  style="text-align: center;"><a href="/user/send_msg?id={{ r._id }}">{{ r.title }}</a></td>
+        <td>{{ r.price }}</td>
+		<td>{{ r.category }}</td>
+		<td>{{ r.name }}</td>
+		<td>{{ r.city }}</td>
+		<td>{{ r.description }}</td>
+		<td>{{ r.email }}</td>
+      </tr>
+    </tbody>
+	  {% endfor %}
+  </table>
+</div>
+
+</section>
+{% else %}
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('login') }}">here</a></p>
+
+{% include 'user/session.html' %}
+
+{% endif %}
+
+</p></div></div>
+{% endblock %}

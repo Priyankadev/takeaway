@@ -25,7 +25,6 @@ class Mdb:
 #                              USER PANEL                                  #
 #                                                                          #
 ############################################################################
-
     def check_email(self, email):
         return self.db.user.find({'email': email}).count() > 0
 
@@ -110,20 +109,40 @@ class Mdb:
 #                       REGISTRATION USRE IN DATABASE                      #
 #                                                                          #
 ############################################################################
-    def ad_post(self, title, category, description, email, name, city):
+    def ad_post(self, title, price, category, description, email, name, city):
         try:
+            ts = datetime.datetime.today().strftime("%a %b %d %X  %Y ")
             rec = {
                 'email': email,
+                'price': price,
                 'title': title,
                 'category': category,
                 'description': description,
                 'name': name,
+                'time':ts,
                 'city': city
             }
             self.db.post.insert(rec)
 
         except Exception as exp:
             print("ad_post() :: Got exception: %s", exp)
+            print(traceback.format_exc())
+
+
+    def add_msg(self, title, user, id, msg):
+        try:
+            ts = datetime.datetime.today().strftime("%a %b %d %X  %Y ")
+            rec = {
+                'title': title,
+                'user': user,
+                'time': ts,
+                'post_id': id,
+                'msg': msg
+            }
+            self.db.msg.insert(rec)
+
+        except Exception as exp:
+            print("add_msg() :: Got exception: %s", exp)
             print(traceback.format_exc())
 
 
@@ -142,12 +161,49 @@ class Mdb:
         for data in result:
             ret.append(data)
         return ret
+
+
+    def search_cat(self, text):
+        result = self.db.post.find({
+            "$or":
+                [
+                    {'category': {'$regex': text, '$options': 'i'}}
+                 ]
+        })
+        ret = []
+        for data in result:
+            ret.append(data)
+        return ret
+
+
+
+    def my_ad(self, email):
+        result = self.db.post.find({'email': email})
+        ret = []
+        for data in result:
+            ret.append(data)
+        return ret
+
+    def get_msg_by_id(self, post_id):
+        collection = self.db["msg"]
+        result = collection.find({'post_id': post_id})
+        ret = []
+        for data in result:
+            ret.append(data)
+        return ret
+
+    def get_post(self, _id):
+        collection = self.db["post"]
+        result = collection.find({'_id': ObjectId(_id)})
+        for data in result:
+            return data
+
 #############################################
 #                                           #
 #         GET ADMIN ID BY SESSION           #
 #                                           #
 #############################################
-    def get_admin_id_by_session(self, email):
+    def get_admin_id_by_session(self, msg_id):
         result = self.db.admin.find({'email': email})
         id = ''
         if result:

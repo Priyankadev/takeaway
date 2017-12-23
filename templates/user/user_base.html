@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html >
-
-<head>
-    <meta charset="UTF-8">
-    <title>TAKEAWAY</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %} - Takeaway</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script type="text/javascript" src=""></script>
     <link rel="stylesheet" type="text/css" href="https://s2.olx.in/static/olxin/packed/sw855e31d1e1b381c686e47e953699523f.css">
     <link rel="stylesheet" type="text/css" href="https://s1.olx.in/static/olxin/packed/sw6637089ba18177292250e396ff324034.css">
@@ -147,143 +151,54 @@ function __(txt) {
 	return txt;
 }
 </script>
+     {% block head %}{% endblock %}
+  </head>
+  <body>
 
-    {% block head %}{% endblock %}
-</head>
-	<body class="homepage">
-    <div id="innerLayout">
-<header id="header-container">
-	<div class="navi">
-		<div class="wrapper clr rel bigwrapper">
+  <!---------------------------- NAVIGATION BAR BEGINS ---------------------------->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
 
-				<a id="postNewAdLink" class="postnewlink fbold tdnone" href="/user/posting">
-					<span>Submit a Free Ad</span>
-				</a>
-					<a href="/" class="slogan">Takeaway</a>
-
-<ul class="userbox fright marginleft10">
-	<li class="inlblk nowrap vtop noslash" id="my-account-link">
-		<div class="inlblk rel">
-			<a href="/user/myaccount"
-				class="tdnone" id="topLoginLink">
-				<span class="icon inlblk accountshape vtop fleft"></span>
-                {% if session['name'] %}
-
-                <a href="{{ url_for('clearsession') }}">{{session['name']}}</a>
-                {% else %}<span class="link inlblk acc-user-name fleft"><strong>My Account</strong></span>
-                {% endif %}
-	        </a>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">TAKEAWAY</a>
         </div>
-	</li>
-</ul>
-		</div>
-	</div>
-<!---------------------------- NAVIGATION BAR BEGINS ---------------------------->
 
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/user/my_ads">My ads</a></li>
+                <li><a href="/user/search_product">Search Product</a></li>
+                <li><a href="/user/save_ad">Save ads</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if session['name'] %}
+                <li><a href="{{ url_for('clearsession') }}"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Logout</a></li>
+                {% else %}        <li><a href="/user/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>{% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<!----------------------------- NAVIGATION BAR ENDS ----------------------------->
+  <!----------------------------- NAVIGATION BAR ENDS ----------------------------->
 
 
                    {% block content %}{% endblock %}
 
 
 
-<footer id="footer-container">
-	<div class="wrapper small bigwrapper" id="lastwrapper">
-		<div class="margintop15 clr rel">
-			<div class="boxindent">
-				<div class="clr">
-					<div class="static box fleft">
-						<ul class="small lheight16">
-        					<li class="block">
-            					<a href="#!" class="link gray" title="Locations Map">
-                					<span>Locations Map</span>
-            					</a>
-        					</li>
-							<li class="block">
-            					<a href="#!" class="link gray" title="Popular searches">
-									<span>Popular searches</span>
-            					</a>
-							</li>
-							<li class="block">
-								<a href="#!" class="link gray" title="Archive">
-									<span>Archive</span>
-								</a>
-							</li>
-							<li class="block">
-								<a href="#!" class="link gray" title="Sitemap">
-                					<span>Sitemap</span>
-            					</a>
-        					</li>
-							<li class="block">
-								<a class="link gray" title="Featured Ads" href="#!">
-									<span>Featured Ads</span>
-								</a>
-							</li>
+  <!----------------------------- FOOTER ------------------------------------------>
+    <div id="footer">
+      {% block footer %}
+        <center>
 
-						</ul>
-					</div>
-<div class="static box fleft">
-	<ul class="small lheight16">
-        <li class="block">
-            <a href="#!" class="link gray" title="Terms of Use">
-                <span>Terms of Use</span>
-            </a>
-        </li>
-        <li class="block">
-            <a href="#!" class="link gray" title="Help &AMP; Contact Us">
-                <span>Help &AMP; Contact Us</span>
-            </a>
-        </li>
-
-	</ul>
-</div>
-<div class="static box fleft">
-
-	<li class="block">
-		<a href="#!" class="#!" id="footerPartners">
-			<span class="inlblk">Who we are</span>
-			<span class="icon mini inlblk vtop margintop6 marginleft5 down4">&nbsp;</span>
-		</a>
-	</li>
-	<li class="block">
-		<a href="#!" target="_blank" class="tdnone link gray">
-			<span class="inlblk">Join Takeaway</span>
-		</a>
-	</li>
-	<li class="block">
-		<a href="#!" class="tdnone link gray">
-        	<span class="inlblk">Happy Takeaway</span>
-        </a>
-	</li>
-</div>
-
-<div class="socialsbox fright">
-	<div class="tcenter">Connect with us</div>
-		<ul class="socialsbox fright" id="footertopShare">
-    		<li class="fleft">
-    			<a target="_blank" href="#!" class="facebook-page-link"> </a>
-    		</li>
-    		<li class="fleft">
-    		    <a target="_blank" href="#!" class="gplus-page-link"> </a>
-    		</li>
-    		<li class="fleft">
-    	 	    <a target="_blank" href="#!" class="twitter-page-link"> </a>
-    		</li>
-			<li class="fleft">
-				<a target="_blank" href="#!" class="instagram-link"> </a>
-			</li>
-    	</ul>
-	</div>
-</div>
-<div class="partners box margin10_0 hidden" id="footerPartnersContainer">
-	Takeaway is a free local classifieds site. Sell anything from used cars to mobiles,
-	furniture, laptops, clothing and more. Submit ads for free and without creating an account.
-	If you want to buy something - here you will find interesting items, cheaper than in the store.
-	Start buying and selling in the most easy way on Takeaway.</div>
-</div>
-</div>
-</div>
-</footer>
-</body>
+      &copy; Copyright 2017 by <a href="#">Takeaway, Inc.</a>.
+        </center>
+      {% endblock %}
+    </div>
+  </body>
 </html>

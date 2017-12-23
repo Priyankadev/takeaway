@@ -1,0 +1,60 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Game result Page{% endblock %}
+{% block head %}
+  {{ super() }}
+<style>
+    td
+    {
+    text-align: center;
+    }
+
+    th
+    {
+    text-align: center;
+    }
+</style>
+{% endblock %}
+{% block content %}
+             <div class="jumbotron text-center">
+                 <div id="signup" class="span3 well well-large offset4">
+
+<p class="important">
+    {% if session['name'] %}
+ <center>
+     <p style="color:blue; ">GAME WINNER</p><br>
+     <table class="table table-bordered">
+    <thead>
+    <tr>
+        <th> User Id</th>
+        <th> User Name</th>
+        <th> Game Id</th>
+        <th> Ball</th>
+        <th> Timestamp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+     {% for bet in games %}
+
+        <td>{{ bet._id }}</td>
+        <td>{{ bet.user }}</td>
+        <td>{{ bet.game_id }}</td>
+        <td>{{ bet.ball }}</td>
+        <td>{{ bet.timestamp }}</td>
+     </tr>
+     </tbody>
+
+     {% endfor %}<br>
+
+
+
+     </table>
+ </center>
+      {% else %}
+
+  {% include 'admin/session.html' %}
+  {% endif %}
+
+
+</p></div></div>
+{% endblock %}
