@@ -475,30 +475,6 @@ def clearsession1():
     return 'Admin Logout!'
 
 
-############################################################################
-#                                                                          #
-#                                 GET ALL USERS                            #
-#                                                                          #
-############################################################################
-@app.route("/admin/get_users", methods=['GET'])
-def get_users():
-    return mdb.get_users()
-
-
-############################################################################
-#                                                                          #
-#                                 GET ALL USERS                            #
-#                                                                          #
-############################################################################
-@app.route("/mobile", methods=['GET'])
-def mobile():
-    try:
-        mdb.mobile()
-    except Exception as exp:
-        print ("get_done() :: Got exception: %s" % exp)
-        print(traceback.format_exc())
-    return "%s" % mdb.mobile()
-
 
 ##############################################################################
 #                                                                            #

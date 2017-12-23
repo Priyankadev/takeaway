@@ -5,6 +5,7 @@ import json
 import datetime
 from bson import ObjectId
 
+
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, ObjectId):
@@ -27,7 +28,6 @@ class Mdb:
 ############################################################################
     def check_email(self, email):
         return self.db.user.find({'email': email}).count() > 0
-
 
 ############################################################################
 #                                                                          #
@@ -73,7 +73,6 @@ class Mdb:
                 print('password in db class', password)
         return password
 
-
 ############################################################################
 #                                                                          #
 #                GET NAME AND EMAILID VIA EMAIL ADDRESS                    #
@@ -89,7 +88,6 @@ class Mdb:
                 name = data['name']
                 email = data['email']
         return name
-
 
 #############################################
 #                                           #
@@ -119,7 +117,7 @@ class Mdb:
                 'category': category,
                 'description': description,
                 'name': name,
-                'time':ts,
+                'time': ts,
                 'city': city
             }
             self.db.post.insert(rec)
@@ -127,7 +125,6 @@ class Mdb:
         except Exception as exp:
             print("ad_post() :: Got exception: %s", exp)
             print(traceback.format_exc())
-
 
     def add_msg(self, title, user, id, msg):
         try:
@@ -145,7 +142,6 @@ class Mdb:
             print("add_msg() :: Got exception: %s", exp)
             print(traceback.format_exc())
 
-
     def check_category(self, category):
         return self.db.category.find({'category1': category}).count() > 0
 
@@ -162,7 +158,6 @@ class Mdb:
             ret.append(data)
         return ret
 
-
     def search_cat(self, text):
         result = self.db.post.find({
             "$or":
@@ -174,8 +169,6 @@ class Mdb:
         for data in result:
             ret.append(data)
         return ret
-
-
 
     def my_ad(self, email):
         result = self.db.post.find({'email': email})
@@ -198,13 +191,13 @@ class Mdb:
         for data in result:
             return data
 
-#############################################
-#                                           #
-#         GET ADMIN ID BY SESSION           #
-#                                           #
-#############################################
+############################################################################
+#                                                                          #
+#                      GET ADMIN ID BY SESSION                             #
+#                                                                          #
+############################################################################
     def get_admin_id_by_session(self, msg_id):
-        result = self.db.admin.find({'email': email})
+        result = self.db.admin.find({'email': msg_id})
         id = ''
         if result:
             for data in result:
@@ -286,7 +279,6 @@ class Mdb:
         result = collection.find({})
         ret = []
         for data in result:
-            print ("<<=====got the data====>> :: %s" % data)
             ret.append(data)
         return JSONEncoder().encode({'user': ret})
 
