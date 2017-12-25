@@ -7,8 +7,10 @@
 {% endblock %}
 {% block content %}
 
+<div class="col-sm-12">
 <div class="jumbotron text-center">
-<div id="signup" class="span3 well well-large offset4">
+    <div class="wrapper">
+<!--<div id="signup" class="span3 well well-large offset4">-->
 <p class="important">
 	{% if session['name'] %}
 
@@ -32,9 +34,9 @@
                 <button type="submit" class="btn btn-success">SUBMIT</button>
             </div>
 
-        </form><br><br><br><br><hr><br>
+        </form><br><br><hr>
 
-   if related post msg are show then recomment of these comments
+   if related post msg are show then comment of these comments<br><br>
 
         <p style="color:blue; ">RECORDS OF Msg</p><br>
 

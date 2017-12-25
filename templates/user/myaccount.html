@@ -7,15 +7,16 @@
 {% block content %}
 
 
+<div class="col-sm-12">
 <div class="jumbotron text-center">
-<div id="signup" class="span3 well well-large offset4">
+	<div class="wrapper">
  <p class="important">
      {% if session['name'] %}&nbsp;
 
 
 <section id="body-container" class="rel container">
 	<div class="wrapper">
-		<div class="content clr rel">
+		<!--<div class="content clr rel">-->
 
 			<form id="frm" class="tablica55 default adding flat-style-form publish {categoriesAjaxUrl: 'https://www.olx.in/ajax/posting/categories/'}"
 				method="post" action="/user/update_account">

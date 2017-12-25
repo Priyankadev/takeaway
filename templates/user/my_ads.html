@@ -6,14 +6,18 @@
 {% endblock %}
 {% block content %}
 
-<!--div class="container"><div class="row"-->
-<!--<div class="col-sm-12">-->
+<div class="col-sm-12">
 <div class="jumbotron text-center">
-<div id="signup" class="span3 well well-large offset4">
+    <div class="wrapper">
+<!--<div id="signup" class="span3 well well-large offset4">-->
 <p class="important">
+      	<section id="body-container">
+
+	<div class="wrapper rel bigwrapper">
 {% if session['name'] %}
 
 <div class="container">
+    <center><h3 style="color:blue;">	My ADs	</h3></center><br>
   <table class="table">
     <thead>
       <tr>
@@ -50,7 +54,8 @@
 {% include 'user/session.html' %}
 
 {% endif %}
-
+</div>
+</section>
 
 </p></div></div>
 {% endblock %}
