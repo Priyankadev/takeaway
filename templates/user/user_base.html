@@ -8,11 +8,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script type="text/javascript" src=""></script>
-    <link rel="stylesheet" type="text/css" href="https://s2.olx.in/static/olxin/packed/sw855e31d1e1b381c686e47e953699523f.css">
-    <link rel="stylesheet" type="text/css" href="https://s1.olx.in/static/olxin/packed/sw6637089ba18177292250e396ff324034.css">
-    <link rel="stylesheet" type="text/css" href="https://s1.olx.in/static/olxin/packed/swd59215f533aa2c2d172b1a7bac1025ec.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style1.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style2.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style3.css')}}">
+
     <script type="text/javascript">
 window.suggestmeyes_loaded = true;
 var action='index';
@@ -172,7 +173,7 @@ function __(txt) {
             <ul class="nav navbar-nav">
                 <li><a href="/user/my_ads">My ads</a></li>
                 <li><a href="/user/search_product">Search Product</a></li>
-                <!--<li><a href="/user/myaccount">My Account</a></li>-->
+                <li><a href="/user/myaccount">My Account</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if session['name'] %}
@@ -184,14 +185,13 @@ function __(txt) {
     </div>
 </nav>
 
-  <!----------------------------- NAVIGATION BAR ENDS ----------------------------->
+<!----------------------------- NAVIGATION BAR ENDS ----------------------------->
 
 
                    {% block content %}{% endblock %}
 
 
-
-  <!----------------------------- FOOTER ------------------------------------------>
+<!----------------------------- FOOTER ------------------------------------------>
     <div id="footer">
       {% block footer %}
         <center>

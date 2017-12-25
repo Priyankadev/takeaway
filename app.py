@@ -375,6 +375,28 @@ def myaccount():
     return render_template('user/myaccount.html', **templeteData)
 
 
+@app.route("/user/update_account", methods=['POST'])
+def update_account():
+    try:
+        sumSessionCounter()
+        name = request.form['name']
+        email = session['email']
+        password = request.form['password']
+
+        pw_hash = bcrypt.generate_password_hash(password)
+        passw = bcrypt.check_password_hash(pw_hash, password)
+
+        if mdb.user_exists(email):
+            mdb.update_data(name, email, pw_hash)
+            return render_template('user/save_ad.html')
+        else:
+            return render_template('user/myaccount.html')
+
+    except Exception as exp:
+        print('update_account() :: Got exception: %s' % exp)
+        return render_template('user/myaccount.html')
+
+
 ############################################################################
 #                                                                          #
 #                                 SEARCH POST                              #
@@ -414,7 +436,7 @@ def clearsession():
         agent = request.headers.get('User-Agent')
         mdb.save_login_info(user_email, mac, ip, agent, LOGIN_TYPE)
         session.clear()
-        return 'Logout Done!'
+        return render_template('user/login.html')
     except Exception as exp:
         return render_template('user/login.html')
 

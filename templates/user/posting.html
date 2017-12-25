@@ -2,9 +2,7 @@
 {% block title %}Signup Page{% endblock %}
 {% block head %}
   {{ super() }}
-<style>
-    br{line-height:7em;}
-</style>
+
 
 {% endblock %}
 {% block content %}
@@ -33,7 +31,7 @@
 						</div>
 						<div class="area clr">
 							<div class="fleft rel zi2 focusbox">
-								<input type="text" value="" name="title" class="text x-normal light br4 xxx-long2 required {maxtext:70, mintext:6}"> <span
+								<input type="text" value="" name="title" required="" class="text x-normal light br4 xxx-long2 required {maxtext:70, mintext:6}"> <span
 									class="status icon vmiddle inlblk dnone">&nbsp;</span>
 							</div>
 						</div>
@@ -46,7 +44,7 @@
 						</div>
 						<div class="area clr">
 							<div class="fleft rel zi2 focusbox">
-								<input type="text" value="" name="price" class="text x-normal light br4 xxx-long2 required {maxtext:70, mintext:6}"> <span
+								<input type="text" value="" name="price" required="" class="text x-normal light br4 xxx-long2 required {maxtext:70, mintext:6}"> <span
 									class="status icon vmiddle inlblk dnone">&nbsp;</span>
 							</div>
 						</div>
@@ -63,7 +61,9 @@
 									<div id="category-breadcrumb-container" class="vmiddle">
 										<span id="catgory-breadcrumb-text" class="color-3 fbold"></span>
 
-										<select class="dropdown light fleft" name="category">
+										<select class="dropdown light fleft" required="" name="category">
+
+											<option value="">---Select---</option>
 											<option value="Properties">Properties</option>
 											<option value="Cars">Cars</option>
 											<option value="Electronics & Appliances">Electronics & Appliances</option>
@@ -89,7 +89,7 @@
 						</div>
 						<div class="area clr">
 							<div class="fleft rel focusbox">
-								<textarea name="description" class="x-normal light required br4 " frm="ad" style="height: 120px; width: 400px; resize: none; overflow-y: hidden;"
+								<textarea name="description" class="x-normal light required br4 " required="" frm="ad" style="height: 120px; width: 400px; resize: none; overflow-y: hidden;"
 									cols="80" rows="1" placeholder="Include the brand, model, age and any included accessories." ></textarea>
 								<span class="status icon vtop inlblk dnone">&nbsp;</span>
 							</div>
@@ -134,7 +134,7 @@
 				<div class="clr">
 					<div class="fleft focusbox">
 						<div class="rel zi3">
-							<input  name="city"  type="text" value="" class="text light br4 text-mail required x-normal email x-long">
+							<input  name="city"  type="text" value="" required="" class="text light br4 text-mail required x-normal email x-long">
 						</div>
 					</div>
 				</div>
@@ -162,7 +162,7 @@
 </section>
 {% else %}
 <p style="color: red"> You still didn't set your Email, do it
-    <a href="{{ url_for('login') }}">here</a></p>
+
 
 {% include 'user/session.html' %}
 

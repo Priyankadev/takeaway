@@ -2,9 +2,6 @@
 {% block title %}Signup Page{% endblock %}
 {% block head %}
   {{ super() }}
-<style>
-    br{line-height:7em;}
-</style>
 
 {% endblock %}
 {% block content %}
@@ -109,7 +106,6 @@
 </section>
 {% else %}
 <p style="color: red"> You still didn't set your Email, do it
-    <a href="{{ url_for('login') }}">here</a></p>
 
 {% include 'user/session.html' %}
 

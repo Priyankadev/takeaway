@@ -204,6 +204,13 @@ class Mdb:
         for data in result:
             return data
 
+
+    def update_data(self, name, email, pw_hash):
+        self.db.user.update(
+            {'email': email},
+            {'$set': {'password': pw_hash, 'name': name}},
+            upsert=True, multi=True)
+
 ############################################################################
 #                                                                          #
 #                      GET ADMIN ID BY SESSION                             #
